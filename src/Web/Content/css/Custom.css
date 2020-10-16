@@ -1,0 +1,23 @@
+﻿.colornav {
+    background: #5a30e6;
+   box-shadow: 1rem 1rem 0.5rem #1c0f4d;
+    color: #e0e0e0;
+    font: 1.4rem bolder 'Poppins';
+}
+
+.title{
+    font: 1.5rem  700 'Poppins';
+    color: white;
+}
+
+.shadow{
+    box-shadow: 1rem 1rem 1rem black;
+}
+
+.colorHeader {
+    background: #5a30e6;
+    width:100vw;
+    display:flex;
+    justify-content:center;
+    margin:auto;
+}

@@ -1,0 +1,10 @@
+﻿@model List<TIten>
+    
+<div class="col-lg-12 item-genero">
+    <p>
+        <strong>@Model.Select(x => x.Movie.Name)</strong> 
+    </p>
+    <p>
+        Devolução em : @Model.Select(x => x.Reservation.Devolution)
+    </p>
+</div>

@@ -1,0 +1,25 @@
+﻿@model List<TMovieCategory>
+@{ 
+    var client = (TClient)ViewBag.Usuario;
+}
+<div class="col-lg-12 ">
+    <input type="hidden" name="Movies" class="id-genero" value="@Model.Select(x => x.Movie.Name)" />
+   
+    <br />
+    <div style="display:block; box-shadow:0.3rem 1rem 2rem 2rem gray; padding:2rem;">
+        <h3 style="color:mediumvioletred; display:flex; font-weight:bolder;border-bottom: solid 1px black;">Filmes de acordo com suas preferências</h3>
+        <br />
+        <div style="display:flex;justify-content:center;flex-direction:column;">
+            @foreach (var item in Model)
+            {
+                <h3 style="border: 1px solid black; border-radius:1rem; border-left:none; border-right:none;"> <strong style="color:darkslateblue; margin:auto;">@item.Movie.Name</strong> <span><button type="submit" style="border-radius:4rem" href="@Url.Action(MVC.Cliente.Clientes.Reservas())" >Reservar</button></span></h3>
+                <p>@item.Category.Name</p>
+                <br />
+            }
+        </div>
+        
+
+    </div>
+    </div>
+
+

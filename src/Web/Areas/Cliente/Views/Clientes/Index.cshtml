@@ -1,0 +1,95 @@
+﻿@model List<TClient>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Clientes
+</h2>
+<div class="row" style="margin: 30px 0; text-align: right">
+    <div class="col-lg-12 text-right">
+        <a class="btn btn-primary btn-lg" data-toggle="tooltip" title="Cadastrar"
+           href="@Url.Action(MVC.Cliente.Clientes.Cadastrar())">
+            <i class="fas fa-plus"></i> Cadastrar
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered table-hover tablesorter">
+            <thead>
+                <tr class="carousel">
+                    <th class="caption">
+                        Nome
+                    </th>
+                    <th class="header">
+                        E-mail
+                    </th>
+                    <th class="header">
+                        Telefone
+                    </th>
+                    <th class="header">
+                        Login
+                    </th>
+                    <th class="header">
+                        Preferencias
+                    </th>
+                    <th class="header text-center">
+                        Ação
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.Telephone
+                    </td>
+                    <td>
+                        @item.Login
+                    </td>
+                    <td>
+                        @foreach (var genero in item.TPreferences)
+                        {
+                            <span>- @genero.Category.Name</span>
+                        }
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-primary btn-xs" data-toggle="tooltip" title="Editar"
+                           href="@Url.Action(MVC.Cliente.Clientes.Editar(item.Id))">
+                            <i class="fas fa-pencil"></i> Editar
+                        </a>
+                        @if (!item.TReservations.Any())
+                        {
+                            <a class="btn btn-danger ajax-modal btn-xs" data-toggle="tooltip" title="Excluir"
+                               href="@Url.Action(MVC.Cliente.Clientes.Excluir(item.Id))">
+                                <i class="fas fa-trash"></i> Excluir
+                            </a>
+                        }
+
+                    </td>
+                </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="15" class="text-center">
+                            <strong>Nenhum registro encontrado</strong>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

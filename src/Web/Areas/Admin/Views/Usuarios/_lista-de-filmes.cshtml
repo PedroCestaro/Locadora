@@ -1,0 +1,8 @@
+﻿@model TMovie
+<div class="col-lg-12 item-filme"> 
+    <input type="hidden"  name="Movies" class="id-filme" value="@Model.Id" /> @*Chama o array 'movies'*@
+        <p>
+        <strong>@Model.Name</strong> - <a class="excluir-filme" data-nome="@Model.Name" style="cursor: pointer">Excluir</a>
+    </p>
+</div>
+
