@@ -46,14 +46,6 @@ namespace Locadora.Web.Areas.Admin.Controllers
             ViewBag.Alerta = TempData["Alerta"];
         }
 
-        //public ActionResult Alert()
-        //{
-        //    string texo = "Cadastro realizado com sucesso!";
-        //    TempData["Cadastro"] = texo;
-
-        //}
-
-       
 
         protected ActionResult HandleViewException<T>(T model, SimpleValidationException ex)
         {

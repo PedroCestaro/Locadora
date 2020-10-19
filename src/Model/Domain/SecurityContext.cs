@@ -43,19 +43,18 @@ namespace Locadora.Domain
             if (_isAuthenticated && !string.IsNullOrEmpty(username))//se _isAuthenticated e o username != null
 
             {
-               
                     var model = TClient.FindByUsername(username);
                     if (model != null)
                         _user = new UserSecurity(model);
-
             }
-            if (_user == null)
+            else if(_user == null)
             {
                 var model = TUser.FindByUsername(username);
                 if (model != null)
                     _user = new UserSecurity(model);
             }
-            else {
+            else
+            {
                 _user = null;
                 _isAuthenticated = false;
             }

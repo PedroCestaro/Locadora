@@ -92,6 +92,7 @@
     <Compile Include="20200921114425_Untitled.cs" />
     <Compile Include="20200921115822_cria_tabelas.cs" />
     <Compile Include="20200921134033_altera_tabelas.cs" />
+    <Compile Include="20201019110833_cria_devolucao_reserva.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">

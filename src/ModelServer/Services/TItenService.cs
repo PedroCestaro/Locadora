@@ -23,14 +23,14 @@ namespace Locadora.Services
             {
                
                     var movie = TMovie.Load(reservation.Movies[i]);
-                    value += 5.0;
+                    value += 05.00;
                     quantity++;
-                    new TIten()
-                    {
+                new TIten()
+                {
                         Reservation = reservation,
                         Movie = movie,
                         Quantity = quantity,
-                        Value = value
+                        Value = (decimal)value
                     }.Save();
             }
                

@@ -10,7 +10,7 @@ namespace Locadora.Domain
     {
         public String login { get; set; }
         public int? movieId { get; set; }
-       
+        public Boolean? returned { get; set; }
 
         public ReservationSearch()
         {

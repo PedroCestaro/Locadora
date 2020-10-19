@@ -15,6 +15,7 @@ namespace Locadora.Domain
 
         public virtual DateTime Withdraw { get; set; } 
         public virtual DateTime Devolution { get; set; } 
+        public virtual Boolean? Returned { get; set; } 
 
         public virtual TClient Client { get; set; } 
 

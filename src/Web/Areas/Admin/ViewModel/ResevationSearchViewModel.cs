@@ -11,17 +11,18 @@ namespace Locadora.Web.Areas.Admin.ViewModel
 
         public string login { get; set; }
         public int movieId { get; set; }
-
-
+        public bool returned { get; set; }
+          
         public ReservationSearchViewModel()
         {
 
         }
 
-        public ReservationSearchViewModel(string login, int movieId)
+        public ReservationSearchViewModel(string login, int movieId, bool returned)
         {
             this.login = login;
             this.movieId = movieId;
+            this.returned = returned;
         }
 
 
@@ -30,7 +31,8 @@ namespace Locadora.Web.Areas.Admin.ViewModel
             return new ReservationSearch()
             {
                 login = this.login,
-                movieId = this.movieId
+                movieId = this.movieId,
+                returned = this.returned
             };
         }
     }

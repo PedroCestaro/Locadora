@@ -163,6 +163,7 @@ namespace Locadora.Web.Areas.Admin.Controllers
         public virtual ActionResult ReservasDeClientes()
         {
             ViewBag.Filmes = TMovie.ListAll().ToSelectList(x => x.Id, x => x.Name);
+            //ViewBag.Status = TReservation.ListAll().ToSelectList(x => x, x => x.Returned);
             var reservas = TReservation.ListAll();
             return View(reservas);
         }
@@ -185,23 +186,6 @@ namespace Locadora.Web.Areas.Admin.Controllers
             return RedirectToAction("ReservasDeClientes");
         }
 
-
-        //public virtual ActionResult ListarReservasDoCliente(ReservationSearchViewModel reservation)
-        //{
-        //    var cliente = TClient.FindByUsername(reservation.login);
-        //    var lista = TReservation.List(x => x.Client.Id == cliente.Id);
-        //    return PartialView("_lista_de_reservas", lista);
-        //}
-
-        //public virtual ActionResult ListarFilmessDoCliente(ReservationSearchViewModel reservation)
-        //{
-        //    //var item = TIten.List(x => x.Movie.Id == reservation.movieId).Select(x => x.Reservation.Id) ;
-        //    var item = TIten.List(x => x.Movie.Id == reservation.movieId).Select(x => x.Reservation.Id);
-        //    var lista = TReservation.LoadMany(item);
-        //    return PartialView("_lista_de_reservas", lista);
-        //}
-
-
         public virtual ActionResult ListarReservas(ReservationSearchViewModel reservation)
         {
             var reserva = reservation.ConverToReservationSearch();
@@ -210,6 +194,25 @@ namespace Locadora.Web.Areas.Admin.Controllers
             return PartialView("_lista_de_reservas",buscarReservas);
         }
 
+
+        public virtual ActionResult FinalizarReservas(int id)
+        {
+            var reservation = TReservation.Load(id);
+            return PartialView("_finalizar_reserva", reservation);
+        }
+
+
+        [HttpPost]
+        public virtual ActionResult FinalizarReservas(TReservation reservation)
+
+        {
+            var updatedReservation = TReservation.Load(reservation.Id);
+            updatedReservation.Returned = reservation.Returned;
+            updatedReservation.Returned = true;
+            updatedReservation.Update();
+            TempData["Alerta"] = new Alert("success", "Devolução Confirmada");
+            return RedirectToAction("ReservasDeClientes");
+        }
     }
 
 }

@@ -179,6 +179,7 @@ namespace Locadora.Web.Areas.Cliente.Controllers
         public virtual ActionResult Reservas()
         {
             var reserva = new TReservation();
+            reserva.Returned = false;
             ViewBag.Filme = TMovie.ListAll().ToSelectList(x => x.Id, x => x.Name);
             return View(reserva);
         }

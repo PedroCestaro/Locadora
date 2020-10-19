@@ -2,26 +2,32 @@
 
 @foreach (var item in Model)
  {
-        <div style="
+<div style="
         border: 1px solid black;
         padding: 2rem;
         border-radius: 2rem;">
-            <p><strong>Id da Reserva: </strong>@item.Id</p>
-            <p><strong>Nome do Cliente: </strong>@item.Client.Name</p>
-            <p><strong>Filme(s):</strong></p>
-            <div>
-                @foreach (var movie in TIten.List(x => x.Reservation.Id == item.Id))
-                {
-                    <p>- @movie.Movie.Name</p>
-                }
-            </div>
-            <p><strong>Retirada: </strong>@item.Withdraw</p>
-            <p><strong>Devolução: </strong>@item.Devolution</p>
-            <a styleclass="btn btn-danger ajax-modal btn-xs" data-toggle="tooltip" title="confirmar"
-               href="@Url.Action(MVC.Admin.Usuarios.AlterarDataDevolucao(item.Id))">
-                <i class="fas fa-trash"></i> Confirmar
-            </a>
-        </div>
+    <p><strong>Id da Reserva: </strong>@item.Id</p>
+    <p><strong>Nome do Cliente: </strong>@item.Client.Name</p>
+    <p><strong>Filme(s):</strong></p>
+    <div>
+        @foreach (var movie in TIten.List(x => x.Reservation.Id == item.Id))
+        {
+            <p>- @movie.Movie.Name</p>
+        }
+    </div>
+    <p><strong>Retirada: </strong>@item.Withdraw</p>
+    <p><strong>Devolução: </strong>@item.Devolution</p>
+    <p><strong>Status: </strong>@item.Returned
+    </p>
+    <a class="btn btn-danger ajax-modal btn-xs" data-toggle="tooltip" title="Excluir"
+       href="@Url.Action(MVC.Admin.Usuarios.AlterarDataDevolucao(item.Id))">
+        <i class="fas fa-trash"></i> Confirmar
+    </a>
+    <a class="btn btn-danger ajax-modal btn-xs" data-toggle="tooltip" title="Excluir"
+       href="@Url.Action(MVC.Admin.Usuarios.FinalizarReservas(item.Id))">
+        <i class="fas fa-trash"></i> Finalizar
+    </a>
+</div>
         <br />
  }
 

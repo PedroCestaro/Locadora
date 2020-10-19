@@ -42,6 +42,12 @@ namespace Locadora.Services
                 criteria.CreateAlias("item.Movie", "movie");
                 criteria.Add(Restrictions.Eq("movie.Id", search.movieId));
             }
+
+            if (search.returned.HasValue)
+            {
+                criteria.Add(Restrictions.Eq("Returned", search.returned));
+            }
+
             return criteria.List<TReservation>().ToList();
         }
     }

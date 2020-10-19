@@ -95,6 +95,12 @@ namespace Locadora.Web.Areas.Admin.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ListarReservas);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult FinalizarReservas()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FinalizarReservas);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public UsuariosController Actions { get { return MVC.Admin.Usuarios; } }
@@ -124,6 +130,7 @@ namespace Locadora.Web.Areas.Admin.Controllers
             public readonly string ReservasDeClientes = "ReservasDeClientes";
             public readonly string AlterarDataDevolucao = "AlterarDataDevolucao";
             public readonly string ListarReservas = "ListarReservas";
+            public readonly string FinalizarReservas = "FinalizarReservas";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -142,6 +149,7 @@ namespace Locadora.Web.Areas.Admin.Controllers
             public const string ReservasDeClientes = "ReservasDeClientes";
             public const string AlterarDataDevolucao = "AlterarDataDevolucao";
             public const string ListarReservas = "ListarReservas";
+            public const string FinalizarReservas = "FinalizarReservas";
         }
 
 
@@ -220,6 +228,15 @@ namespace Locadora.Web.Areas.Admin.Controllers
         {
             public readonly string reservation = "reservation";
         }
+        static readonly ActionParamsClass_FinalizarReservas s_params_FinalizarReservas = new ActionParamsClass_FinalizarReservas();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_FinalizarReservas FinalizarReservasParams { get { return s_params_FinalizarReservas; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_FinalizarReservas
+        {
+            public readonly string id = "id";
+            public readonly string reservation = "reservation";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -232,6 +249,7 @@ namespace Locadora.Web.Areas.Admin.Controllers
             {
                 public readonly string _editar_devolucao = "_editar_devolucao";
                 public readonly string _excluir = "_excluir";
+                public readonly string _finalizar_reserva = "_finalizar_reserva";
                 public readonly string _form = "_form";
                 public readonly string _lista_de_clientes = "_lista-de-clientes";
                 public readonly string _lista_de_filmes = "_lista-de-filmes";
@@ -246,6 +264,7 @@ namespace Locadora.Web.Areas.Admin.Controllers
             }
             public readonly string _editar_devolucao = "~/Areas/Admin/Views/Usuarios/_editar_devolucao.cshtml";
             public readonly string _excluir = "~/Areas/Admin/Views/Usuarios/_excluir.cshtml";
+            public readonly string _finalizar_reserva = "~/Areas/Admin/Views/Usuarios/_finalizar_reserva.cshtml";
             public readonly string _form = "~/Areas/Admin/Views/Usuarios/_form.cshtml";
             public readonly string _lista_de_clientes = "~/Areas/Admin/Views/Usuarios/_lista-de-clientes.cshtml";
             public readonly string _lista_de_filmes = "~/Areas/Admin/Views/Usuarios/_lista-de-filmes.cshtml";
@@ -484,6 +503,30 @@ namespace Locadora.Web.Areas.Admin.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ListarReservas);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "reservation", reservation);
             ListarReservasOverride(callInfo, reservation);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void FinalizarReservasOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult FinalizarReservas(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FinalizarReservas);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            FinalizarReservasOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void FinalizarReservasOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Locadora.Domain.TReservation reservation);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult FinalizarReservas(Locadora.Domain.TReservation reservation)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FinalizarReservas);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "reservation", reservation);
+            FinalizarReservasOverride(callInfo, reservation);
             return callInfo;
         }
 

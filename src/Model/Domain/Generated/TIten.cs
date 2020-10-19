@@ -13,8 +13,8 @@ namespace Locadora.Domain
     {
         public virtual Int32 Id { get; set; } 
 
-        public virtual Double Value { get; set; } 
         public virtual Int32 Quantity { get; set; } 
+        public virtual Decimal Value { get; set; } 
 
         public virtual TMovie Movie { get; set; } 
         public virtual TReservation Reservation { get; set; } 

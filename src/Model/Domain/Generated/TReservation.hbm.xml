@@ -11,6 +11,9 @@
     <property name="Devolution">
       <column name="devolution" length="8" sql-type="datetime" />
     </property>
+    <property name="Returned">
+      <column name="returned" length="1" sql-type="bit" />
+    </property>
 
     <many-to-one name="Client">
       <column name="id_client"/>

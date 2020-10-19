@@ -5,11 +5,11 @@
       <generator class="native" />
     </id>
          
-    <property name="Value">
-      <column name="value" length="8" sql-type="float" />
-    </property>
     <property name="Quantity">
       <column name="quantity" length="4" sql-type="int" />
+    </property>
+    <property name="Value">
+      <column name="value" length="17" sql-type="decimal" />
     </property>
 
     <many-to-one name="Movie">
