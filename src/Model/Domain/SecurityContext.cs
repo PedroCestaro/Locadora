@@ -41,41 +41,50 @@ namespace Locadora.Domain
 
             var username = TryCast(x => x.Name, string.Empty);//chama a coleção declarada abaixo
             if (_isAuthenticated && !string.IsNullOrEmpty(username))//se _isAuthenticated e o username != null
+
             {
-                var model = TClient.FindByUsername(username);
+               
+                    var model = TClient.FindByUsername(username);
+                    if (model != null)
+                        _user = new UserSecurity(model);
+
+            }
+            if (_user == null)
+            {
+                var model = TUser.FindByUsername(username);
                 if (model != null)
                     _user = new UserSecurity(model);
             }
-            else
+            else {
                 _user = null;
-            if (_user == null)
                 _isAuthenticated = false;
+            }
             return this;
         }
 
-        //public SecurityContext Init(Func<IIdentity> identityGetter, TClient model)
-        //{
-        //    _identityGetter = identityGetter;
-        //    _isAuthenticated = TryGet(x => x.IsAuthenticated, false);
+        public SecurityContext InitUser(Func<IIdentity> identityGetter)
+        {
+            _identityGetter = identityGetter;
+            _isAuthenticated = TryGet(x => x.IsAuthenticated, false);
 
-        //    var username = TryCast(x => x.Name, string.Empty);
-        //    if (_isAuthenticated && !string.IsNullOrEmpty(username))
-        //    {
-        //        var client = TClient.FindByUsername(username);
-        //        if (client != null)
-        //            _user = new UserSecurity(client);
-        //        return this;
-        //    }
+            var username = TryCast(x => x.Name, string.Empty);
+            if (_isAuthenticated && !string.IsNullOrEmpty(username))
+            {
+                var client = TUser.FindByUsername(username);
+                if (client != null)
+                    _user = new UserSecurity(client);
+                return this;
+            }
 
-        //    else
-        //    {
-        //        _user = null;
-        //        if (_user == null)
-        //            _isAuthenticated = false;
-        //        return this;
-        //    }
+            else
+            {
+                _user = null;
+                if (_user == null)
+                    _isAuthenticated = false;
+                return this;
+            }
 
-        //}
+        }
 
         public SecurityContext Init(SimpleContext context)
         {

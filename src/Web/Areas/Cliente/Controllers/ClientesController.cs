@@ -22,12 +22,14 @@ namespace Locadora.Web.Areas.Cliente.Controllers
    
     public partial class ClientesController : BaseController
     {        
+        [RequiresAuthorization]
         public virtual ActionResult Index()
         {
             var clientes = TClient.ListAll().ToList();//chamando todos os objs Tclient           
             return View(clientes);
         }
-
+        
+        [RequiresAuthorization]
         public virtual ActionResult Cadastrar()
         {
             var cliente = new TClient();//instancio um novo obj
@@ -55,8 +57,8 @@ namespace Locadora.Web.Areas.Cliente.Controllers
                 return HandleViewException(model, ex);
             }
         }
-       
 
+        [RequiresAuthorization]
         public virtual ActionResult Editar(int id)
         {
             var cliente = TClient.Load(id);//carrega o obj on Client.id == client.id
@@ -102,7 +104,7 @@ namespace Locadora.Web.Areas.Cliente.Controllers
             return RedirectToAction("Index");
         }
 
-  
+        [RequiresAuthorization]
         public virtual ActionResult MinhaConta()
         {
             var client = (TClient)ViewBag.Usuario;//pegando o usuário logado
@@ -173,7 +175,7 @@ namespace Locadora.Web.Areas.Cliente.Controllers
             return PartialView("_lista-de-filmes", filme);
         }
 
-
+        [RequiresAuthorization]
         public virtual ActionResult Reservas()
         {
             var reserva = new TReservation();

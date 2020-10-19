@@ -8,7 +8,7 @@ namespace Locadora.Domain
 {
     public class ReservationSearch
     {
-        public string login { get; set; }
+        public String login { get; set; }
         public int? movieId { get; set; }
        
 

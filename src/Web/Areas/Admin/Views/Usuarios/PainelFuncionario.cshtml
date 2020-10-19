@@ -3,8 +3,19 @@
     ViewBag.Title = "PainelFuncionario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div>
+    <h2>Painel do Funcionario</h2>
 
-<h2>Painel do Funcionario</h2>
+
+    <button onclick="location.href='@Url.Action(MVC.Admin.Usuarios.Logout())'">Logout</button>
+</div>
+<div style="
+        border-bottom: 1px solid purple;
+        border-radius: 1.5rem;
+        display:flex;
+        ">
+    <button onclick="location.href='@Url.Action(MVC.Admin.Usuarios.Reservas())'">Nova Reserva</button>
+    <button onclick="location.href='@Url.Action(MVC.Admin.Usuarios.ReservasDeClientes())'">Listar Reservas</button>
+</div>
 
 
-<button onclick="@Url.Action(MVC.Admin.Usuarios.Logout())">Logout</button>

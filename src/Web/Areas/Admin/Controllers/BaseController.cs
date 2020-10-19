@@ -33,7 +33,7 @@ namespace Locadora.Web.Areas.Admin.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var user = TClient.FindByUsername(User.Identity.Name);//procuro o usuário pelo nome
+            var user = TUser.FindByUsername(User.Identity.Name);//procuro o usuário pelo nome
             if (User.Identity.IsAuthenticated && user != null)//se o usuário estiver autenticado, cria a viewbag
             {
                 ViewBag.Usuario = user;

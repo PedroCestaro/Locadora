@@ -20,7 +20,7 @@ namespace Locadora.Web.Helpers
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var ident = filterContext.HttpContext.Request.IsAuthenticated;
-            //SecurityContext.Do.Init(()=> filterContext);
+            SecurityContext.Do.Init(()=> filterContext.HttpContext.User.Identity);
            
 
              var security = SecurityContext.Do;

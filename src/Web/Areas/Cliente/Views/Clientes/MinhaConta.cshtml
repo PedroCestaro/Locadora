@@ -5,9 +5,12 @@
 }
 <div>
     <h1 style="box-shadow: 2rem 1rem 1rem mediumpurple; color:mediumpurple; font-weight:bolder;">MinhaConta, @ViewBag.Usuario.Name</h1>
+
+    <button onclick="location.href='@Url.Action(MVC.Cliente.Clientes.Logout())'">Logout</button>
 </div>
+<br />
 
 
-@Html.Partial("_listar-filme", Model);
+@*@Html.Partial("_listar-filme", Model);*@
+@Html.Partial("_filmes_por_preferencia", Model);
 
-<button href="@Url.Action(MVC.Cliente.Clientes.Logout())">Logout</button>

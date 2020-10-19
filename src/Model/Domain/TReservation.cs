@@ -14,5 +14,7 @@ namespace Locadora.Domain
         
         public virtual int [] Clientes { get; set; }
 
+        public virtual TIten Item { get; set; }
+
     }
 }

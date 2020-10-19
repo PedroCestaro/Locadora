@@ -296,6 +296,7 @@
     <Content Include="Areas\Admin\Views\Usuarios\_lista_de_reservas.cshtml" />
     <Content Include="Areas\Admin\Views\_excluir.cshtml" />
     <Content Include="Areas\Admin\Views\Usuarios\_editar_devolucao.cshtml" />
+    <Content Include="Areas\Cliente\Views\Clientes\_filmes_por_preferencia.cshtml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Web.config">

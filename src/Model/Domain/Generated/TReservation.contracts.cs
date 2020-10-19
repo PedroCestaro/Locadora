@@ -2,13 +2,13 @@ using Simple.Entities;
 using Locadora.Domain;
 using Simple.Services;
 using Locadora.Services;
-using NHibernate;
+using System.Collections.Generic;
 
 namespace Locadora.Domain
 {
     public partial class TReservation
     {
-        public static ICriteria SearchCriteria(ReservationSearch search) 
+        public static List<TReservation> SearchCriteria(ReservationSearch search) 
         {
 			return Service.SearchCriteria(search);
 		}

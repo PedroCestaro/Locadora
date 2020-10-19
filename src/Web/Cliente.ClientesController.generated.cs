@@ -214,6 +214,7 @@ namespace Locadora.Web.Areas.Cliente.Controllers
             public class _ViewNamesClass
             {
                 public readonly string _excluir = "_excluir";
+                public readonly string _filmes_por_preferencia = "_filmes_por_preferencia";
                 public readonly string _form = "_form";
                 public readonly string _lista_de_filmes = "_lista-de-filmes";
                 public readonly string _listar_categoria = "_listar-categoria";
@@ -227,6 +228,7 @@ namespace Locadora.Web.Areas.Cliente.Controllers
                 public readonly string Reservas = "Reservas";
             }
             public readonly string _excluir = "~/Areas/Cliente/Views/Clientes/_excluir.cshtml";
+            public readonly string _filmes_por_preferencia = "~/Areas/Cliente/Views/Clientes/_filmes_por_preferencia.cshtml";
             public readonly string _form = "~/Areas/Cliente/Views/Clientes/_form.cshtml";
             public readonly string _lista_de_filmes = "~/Areas/Cliente/Views/Clientes/_lista-de-filmes.cshtml";
             public readonly string _listar_categoria = "~/Areas/Cliente/Views/Clientes/_listar-categoria.cshtml";

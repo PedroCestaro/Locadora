@@ -49,7 +49,7 @@ namespace Locadora.Services
                 return null;
 
             return Session.CreateCriteria<TUser>()
-                .Add(Restrictions.Eq("Username", username))
+                .Add(Restrictions.Eq("Login", username))
                 .SetMaxResults(1)
                 .UniqueResult<TUser>();
         }

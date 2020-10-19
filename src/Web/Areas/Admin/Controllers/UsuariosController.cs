@@ -1,6 +1,7 @@
 ﻿using Locadora.Domain;
 using Locadora.Web.Areas.Admin.ViewModel;
 using Locadora.Web.Helpers;
+using NHibernate.Criterion;
 using NPOI.SS.Formula.Atp;
 using Simple.Validation;
 using Simple.Web.Mvc;
@@ -108,8 +109,6 @@ namespace Locadora.Web.Areas.Admin.Controllers
                 ViewBag.Alerta = new Alert("error", "Usuário não encontrado");
                 return RedirectToAction("Login");
             }
-
-
         }
 
         public virtual ActionResult Logout()
@@ -117,7 +116,8 @@ namespace Locadora.Web.Areas.Admin.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction(MVC.Admin.Usuarios.Login());
         }
-  
+
+        [RequiresAuthorization]
         public virtual ActionResult PainelFuncionario()
         {
             return View();
@@ -135,6 +135,7 @@ namespace Locadora.Web.Areas.Admin.Controllers
             return PartialView("_lista-de-clientes", cliente);
         }
 
+        [RequiresAuthorization]
         public virtual ActionResult Reservas()
         {
             var reserva = new TReservation();
@@ -158,6 +159,7 @@ namespace Locadora.Web.Areas.Admin.Controllers
             return RedirectToAction("PainelFuncionario");
         }
 
+        [RequiresAuthorization]
         public virtual ActionResult ReservasDeClientes()
         {
             ViewBag.Filmes = TMovie.ListAll().ToSelectList(x => x.Id, x => x.Name);
@@ -204,9 +206,8 @@ namespace Locadora.Web.Areas.Admin.Controllers
         {
             var reserva = reservation.ConverToReservationSearch();
             var buscarReservas = TReservation.SearchCriteria(reserva);
-            var lista =  buscarReservas.List<TReservation>().Select(x=> x.Client.Login.Contains(buscarReservas.Alias));
-
-            return PartialView("_lista_de_reservas",lista);
+            
+            return PartialView("_lista_de_reservas",buscarReservas);
         }
 
     }

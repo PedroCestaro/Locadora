@@ -11,33 +11,38 @@ using FluentNHibernate.Conventions;
 using Locadora.Helpers;
 using Simple;
 using System.Security.Cryptography.X509Certificates;
+using Remotion.Data.Linq;
+using log4net.Core;
+using NHibernate.Linq.Functions;
+using NHibernate.SqlCommand;
+using NHibernate.Util;
+using NHibernate.Linq;
+using NVelocity.Runtime.Parser.Node;
 
 namespace Locadora.Services
 {
     public partial class TReservationService : EntityService<TReservation>, ITReservationService
     {
-
-        //public List<TReservation> Search(ReservationSearch search)
-        //{
-        //    var criteria = SearchCriteria(search);
-        //    criteria.AddOrder(Order.Desc("Date"));
-        //    criteria.SetFirstResult((search.page - 1) * search.take).SetMaxResults(search.take);
-        //    return criteria.List<TEvent>().DistinctBy(x => x.Id).ToList();
-        //}
-
-
-        public ICriteria SearchCriteria(ReservationSearch search)
+        public  List<TReservation> SearchCriteria(ReservationSearch search)
         {
             var criteria = Session.CreateCriteria<TReservation>();
-
+         
             if (!string.IsNullOrWhiteSpace(search.login))
-                    criteria.Add(Restrictions.Eq("Client.Login", search.login));
-
-            if (search.movieId.HasValue)
-                criteria.Add(Restrictions.Eq("TIten.Movie.Id", search.movieId));
-
-            return criteria;
-           
+            {
+                criteria.SetFetchMode("Client", FetchMode.Eager);//INNER JOIN DO CRITERIA
+                criteria.CreateAlias("Client", "client", JoinType.LeftOuterJoin);
+                criteria.Add(Restrictions.Eq("client.Name", search.login));
+            }
+             
+            if (search.movieId.HasValue && search.movieId.Value !=0)
+            {
+                criteria.CreateAlias("TItens", "item", JoinType.LeftOuterJoin);
+                criteria.SetFetchMode("item", FetchMode.Eager);           
+                criteria.SetFetchMode("item.Movie", FetchMode.Eager);
+                criteria.CreateAlias("item.Movie", "movie");
+                criteria.Add(Restrictions.Eq("movie.Id", search.movieId));
+            }
+            return criteria.List<TReservation>().ToList();
         }
     }
 

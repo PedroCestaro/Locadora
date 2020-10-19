@@ -33,6 +33,7 @@
      $("button.busca").click(function () {
          var login = $("input.loginCliente").val();
          var movieId = $("Select.Filmes").val();
+        
          $.post("@Url.Action(MVC.Admin.Usuarios.ListarReservas())", { login: login, movieId: movieId }, function (data) {//variavel do backend, variavel que eu passo pelo front
              $("div.lista-de-reservas").html(data);                         
           });
