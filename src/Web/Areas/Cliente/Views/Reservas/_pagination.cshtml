@@ -1,0 +1,36 @@
+﻿@model IDictionary<Int32, Int32>
+@{
+    var param = Model.First();//primeiro    
+    var currentPage = (int)ViewBag.Pagina;//nº pag atual
+    var division = (double)param.Key / param.Value;//
+    var totalPages = (int)division == division ? (int)division : (int)division + 1;//
+    var startPage = currentPage - 5 < 0 ? 0 : currentPage - 5;
+    var endPage = startPage + 9 > totalPages ? totalPages : startPage + 9;
+}
+<div class="text-center">
+    @this.Hidden("Pagina").Value((int)ViewBag.Pagina)
+    <ul class="pagination pagination-lg">
+        @if (currentPage != 1)
+        {
+            <li><a class="paginate" id="pagina-@(currentPage - 1)" href="#">«</a></li>
+            if (startPage > 0)
+            {
+                <li><a class="paginate" id="pagina-1" href="#">1</a></li>
+                <li><a class="disabled removable">...</a></li>
+            }
+        }
+        @for (int i = startPage; i < endPage; i++)
+        {
+            <li class="@(currentPage == i + 1 ? "active" : "")"><a class="@(currentPage == i + 1 ? "" : "paginate")" id="pagina-@(i + 1)">@(i + 1)</a></li>
+        }
+        @if (currentPage != endPage)
+        {
+            if (endPage < totalPages)
+            {
+                <li><a class="disabled removable">...</a></li>
+                <li><a class="paginate" id="pagina-@(totalPages)" href="#">@(totalPages)</a></li>
+            }
+            <li><a class="paginate" id="pagina-@(currentPage + 1)" href="#">»</a></li>
+        }
+    </ul>
+</div>

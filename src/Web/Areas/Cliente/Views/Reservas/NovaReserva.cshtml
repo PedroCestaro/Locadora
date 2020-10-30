@@ -1,0 +1,102 @@
+﻿@inherits ModelWebViewPage<TReservation>
+@{
+    ViewBag.Title = "Reservas";
+    Layout = "~/Areas/Cliente/Views/Shared/_Layout.cshtml";
+    var cliente = (TClient)ViewBag.Usuario;
+    var listaDeFilme = ViewBag.Filme;
+
+}
+<section class="home">
+    <!-- home bg -->
+    <div class="owl-carousel home__bg">
+        <div class="item home__cover" data-bg="img/home/home__bg.jpg"></div>
+        <div class="item home__cover" data-bg="img/home/home__bg2.jpg"></div>
+        <div class="item home__cover" data-bg="img/home/home__bg3.jpg"></div>
+        <div class="item home__cover" data-bg="img/home/home__bg4.jpg"></div>
+    </div>
+    <!-- end home bg -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 row justify-content-between">
+                <h1 class="home__title">Nova Reserva</h1>
+            </div>
+        </div>
+    </div>
+    <br />
+</section>
+
+
+<div class="sign section--bg">
+   <div class="container">
+        <div class="row">
+              <div class="col-12">
+                    <div class="sign__content">
+                        @using (Html.BeginForm(MVC.Cliente.Reservas.NovaReserva(), FormMethod.Post))
+                        {
+                            <h1 class="title text-center" style="color:ghostwhite">Selecionar Filme</h1>
+                            <div class="col-lg-12 sign__group">
+                                <label for=".Withdraw" class="how__title">De</label>
+                                @this.DatePicker(x => x.Withdraw).Class("Withdraw").Value(DateTime.Today)
+                            </div>
+                            <div class="col-lg-12 sign__group">
+                                <label for=".Devolution" class="how__title">Até</label>
+                                @this.DatePicker(x => x.Devolution).Class("Devolution").Value(DateTime.Today.AddDays(3))
+                            </div>
+
+                            <div class="col-lg-12 sign__group">
+                                @this.Label("Filme").Class("Filme how__title").Value("Filmes:")
+                                @this.AutoSelect("Filme").Class("Filme").FirstOption("", "Selecione uma opção")
+                            </div>
+                            <div class="nome-filme">
+                                <table class="table table-bordered table-hover table-dark tablesorter reservados">
+                                    <thead>
+                                        <tr class="carousel">
+                                            <th class="how__title title">
+                                                Nome
+                                            </th>
+                                            <th class="how__title title">
+                                                Quantidade
+                                            </th>
+                                            <th class="how__title title" text-center">
+                                                Ação
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+
+                            <button type="submit" class="p-3 btn btn-outline-light btn-dark" style="display:flex;" href="@Url.Action(MVC.Cliente.Reservas.NovaReserva(Model))">Reservar</button>
+                        }
+                    </div>
+              </div>
+        </div>
+     </div>
+ </div>
+<script type="text/javascript">
+    $(function () {
+        $("form").validate();
+
+        $("select.Filme").change(function () {
+            var id = $(this).val();
+            $.post("@Url.Action(MVC.Cliente.Reservas.ListarFilmes())", { id: id }, function (data) {
+                $("table.reservados").append(data);
+                $("select.Filme option[value = " + id + "]").remove();
+            });
+        });
+
+
+        $("a.excluir-filme").livequery("click", function () {
+            var id = $(this).parents("div.nome-cliente").find("td.item-filme").val();
+            $(this).parents("tr.item-filme").remove();
+            $("select.Filme").append("<option value=" + id + ">" + $(this).data("nome") + "</option>");
+        });
+
+    });
+</script>
+
+
+
+
+

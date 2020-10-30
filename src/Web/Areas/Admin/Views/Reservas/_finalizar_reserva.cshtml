@@ -1,0 +1,25 @@
+﻿@inherits ModelWebViewPage<TReservation>
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Finalizar Reserva</h4>
+            </div>
+            <div class="modal-body">
+                <label>Gostaria realmente de finalizar a reserva @Model.Id ?</label> 
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm())
+                {
+                    <button class="btn" data-dismiss="modal" aria-hidden="false">
+                        Não
+                    </button>
+                    <button type="submit" class="btn btn-primary" onclick="@Url.Action(MVC.Admin.Reservas.FinalizarReservas(Model))">
+                        Sim
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

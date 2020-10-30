@@ -1,0 +1,46 @@
+﻿@model Simple.Entities.Page<TCategory>
+
+@foreach (var item in Model)
+{
+    <div style="
+        border: 1px solid blue;
+        padding:2rem;
+        display:flex;
+        border-radius:2rem;
+    ">
+        <p><strong>@item.Name</strong></p>
+        <div>
+            @foreach (var categoria in TMovieCategory.List(x => x.Id == item.Id))
+            {
+                <p>@categoria.Movie.Name</p>
+            }
+        </div>
+        <a class="btn btn-primary btn-xs" data-toggle="tooltip" title="Editar"
+           href="@Url.Action(MVC.Admin.Generos.Editar(item.Id))">
+            <i class="fas fa-pencil"></i> Editar
+        </a>
+        <a class="btn btn-danger ajax-modal btn-xs" data-toggle="tooltip" title="Excluir"
+           href="@Url.Action(MVC.Admin.Generos.Excluir(item.Id))">
+            <i class="fas fa-trash"></i> Excluir
+        </a>
+
+    </div>
+}
+@if (Model.TotalCount > 10)
+{
+    var dictionary = new Dictionary<Int32, Int32>();
+    dictionary.Add(Model.TotalCount, 10);
+    @Html.Partial("_pagination", dictionary)
+    <script type="text/javascript">
+        $(function () {
+            $(".paginate").click(function () {
+                var pagina = $(this).prop("id").split('-')[1];
+                $('div.lista-categoria').html("<img src='@Links.Content.images._45_gif' alt='loading' style='margin: 15px auto;'/>");
+                $('.pagination').remove();
+                $.get("@(Url.Action(MVC.Admin.Generos.ListarGeneros()))", { pagina: pagina}, function (data) {
+                    $('div.lista-categoria').html(data);
+                });
+            });
+        });
+    </script>
+}

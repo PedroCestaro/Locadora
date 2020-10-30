@@ -1,0 +1,32 @@
+﻿@model Simple.Entities.Page<TReservation>
+@{
+    ViewBag.Title = "ListaDeReservas";
+    Layout = "~/Areas/Cliente/Views/Shared/_Layout.cshtml";
+    var cliente = (TClient)ViewBag.Usuario;
+    int pag = ViewBag.Pagina;
+    var currentPage = (int)ViewBag.Pagina;
+}
+<section class="home">
+    <!-- home bg -->
+    <div class="owl-carousel home__bg">
+        <div class="item home__cover" data-bg="img/home/home__bg.jpg"></div>
+        <div class="item home__cover" data-bg="img/home/home__bg2.jpg"></div>
+        <div class="item home__cover" data-bg="img/home/home__bg3.jpg"></div>
+        <div class="item home__cover" data-bg="img/home/home__bg4.jpg"></div>
+    </div>
+    <!-- end home bg -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 row justify-content-between">
+                <h1 class="home__title">Suas <b>Reservas</b></h1>
+                <button type="button" class="btn btn-dark btn-outline-light" onclick="location.href='@Url.Action(MVC.Cliente.Reservas.NovaReserva())'">Nova Reserva</button>
+            </div>
+        </div>
+    </div>
+    <br/>
+</section>
+
+<div class="lista-de-reservas">
+    @Html.Partial("_lista_de_reservas",Model)
+</div>

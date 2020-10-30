@@ -1,5 +1,5 @@
-using Locadora.Services;
 using Simple.Services;
+using Locadora.Services;
 using System.Collections.Generic;
 using Simple.Patterns;
 

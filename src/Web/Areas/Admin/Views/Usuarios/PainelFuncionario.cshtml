@@ -1,13 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "PainelFuncionario";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 <div>
     <h2>Painel do Funcionario</h2>
-
-
-    <button onclick="location.href='@Url.Action(MVC.Admin.Usuarios.Logout())'">Logout</button>
 </div>
 <div style="
         border-bottom: 1px solid purple;
@@ -15,13 +12,31 @@
         display:flex;
         padding:2rem;
         ">
-    <button style="background:purple; border-radius:1rem; padding:1rem; color:whitesmoke;"onclick="location.href='@Url.Action(MVC.Admin.Usuarios.Reservas())'">Nova Reserva</button>
-    <button style="        
+    <button style="background:purple; border-radius:1rem; padding:1rem; color:whitesmoke;" onclick="location.href='@Url.Action(MVC.Admin.Reservas.NovaReserva())'">Nova Reserva</button>
+    <button style="
         background: purple;
         border-radius: 1rem;
         padding: 1rem;
         color: whitesmoke;
-"onclick="location.href='@Url.Action(MVC.Admin.Usuarios.ReservasDeClientes())'">Listar Reservas</button>
+" onclick="location.href='@Url.Action(MVC.Admin.Reservas.Index())'">
+       Visualizar todas as reservas
+    </button>
+    <button style="
+        background: purple;
+        border-radius: 1rem;
+        padding: 1rem;
+        color: whitesmoke;
+" onclick="location.href='@Url.Action(MVC.Admin.Filmes.Index())'">
+        Area de filmes
+    </button>
+    <button style="
+        background: purple;
+        border-radius: 1rem;
+        padding: 1rem;
+        color: whitesmoke;
+" onclick="location.href='@Url.Action(MVC.Admin.Generos.Index())'">
+        Area de Generos
+    </button>
 </div>
 
 

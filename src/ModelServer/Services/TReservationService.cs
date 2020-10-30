@@ -18,12 +18,13 @@ using NHibernate.SqlCommand;
 using NHibernate.Util;
 using NHibernate.Linq;
 using NVelocity.Runtime.Parser.Node;
+using System.Runtime.InteropServices;
 
 namespace Locadora.Services
 {
     public partial class TReservationService : EntityService<TReservation>, ITReservationService
     {
-        public  List<TReservation> SearchCriteria(ReservationSearch search)
+        public  ICriteria SearchCriteria(ReservationSearch search)
         {
             var criteria = Session.CreateCriteria<TReservation>();
          
@@ -48,8 +49,23 @@ namespace Locadora.Services
                 criteria.Add(Restrictions.Eq("Returned", search.returned));
             }
 
+            //return criteria.List<TReservation>().ToList();
+            return criteria;
+        }
+        
+        public List<TReservation> Search(ReservationSearch search)
+        {
+            var criteria = SearchCriteria(search);
+            criteria.SetFirstResult((search.page-1)*search.take).SetMaxResults(search.take);
             return criteria.List<TReservation>().ToList();
         }
+
+        public int CountSearch(ReservationSearch search)
+        {
+            var criteria = SearchCriteria(search);
+            return criteria.SetProjection(Projections.CountDistinct("Id")).UniqueResult<int>();
+        }
+
     }
 
 }

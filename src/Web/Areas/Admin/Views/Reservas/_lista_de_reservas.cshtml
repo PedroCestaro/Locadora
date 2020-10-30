@@ -1,0 +1,80 @@
+﻿@model Simple.Entities.Page<TReservation>
+
+@if (Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        <div style="
+        border: 1px solid black;
+        padding: 2rem;
+        border-radius: 2rem;">
+            <p><strong>Id da Reserva: </strong>@item.Id</p>
+            <p><strong>Nome do Cliente: </strong>@item.Client.Name</p>
+            <p><strong>Filme(s):</strong></p>
+            <div>
+                @foreach (var movie in TIten.List(x => x.Reservation.Id == item.Id))
+                {
+                    <p>- @movie.Movie.Name</p>
+                    <p>Quantidade: @movie.Quantity</p>
+                }
+            </div>
+            <p><strong>Retirada: </strong>@item.Withdraw</p>
+            <p><strong>Devolução: </strong>@item.Devolution</p>
+            <p><strong>Valor: R$</strong>@item.TItens.Sum(x => x.Value).PriceFormatWithDot() </p>
+            <p>
+                <strong>Status: </strong>
+                @if (@item.Returned)
+                {
+                    <span>Devolvida</span>
+                }
+                else
+                {
+                    <span>Ativa</span>
+                }
+            </p>
+            <a class="btn btn-danger ajax-modal btn-xs" data-toggle="tooltip" title="Excluir"
+               href="@Url.Action(MVC.Admin.Reservas.AlterarDataDevolucao(item.Id))">
+                <i class="fas fa-trash"></i> Confirmar
+            </a>
+            <a class="btn btn-danger ajax-modal btn-xs" data-toggle="tooltip" title="Excluir"
+               href="@Url.Action(MVC.Admin.Reservas.FinalizarReservas(item.Id))">
+                <i class="fas fa-trash"></i> Finalizar
+            </a>
+        </div>
+        <br />
+    }
+}
+else
+{
+    <div>
+        <p><strong>Nenhum Registro encontrado</strong></p>
+    </div>
+}
+
+@if (Model.TotalCount > 10)
+{
+    var dictionary = new Dictionary<Int32, Int32>();
+    dictionary.Add(Model.TotalCount, 10);
+    @Html.Partial("_pagination", dictionary)
+    <script type="text/javascript">
+        $(function () {
+            $(".paginate").click(function () {
+                var pagina = $(this).prop("id").split('-')[1];
+                var movieId = $("select#Filmes").val();
+                var cliente = $("input.loginCliente").val();
+                var returned = $("select.status").val();
+                $('div.lista-de-reservas').html("<img src='@Links.Content.images._45_gif' alt='loading' style='margin: 15px auto;'/>");
+                $('.pagination').remove();
+                $.get("@(Url.Action(MVC.Admin.Reservas.ListarReservas()))", { pagina: pagina, login: cliente, movieId: movieId, returned: returned }, function (data) {
+                    $('div.lista-de-reservas').html(data);
+                });
+            });
+        });
+    </script>
+}
+
+
+
+
+
+

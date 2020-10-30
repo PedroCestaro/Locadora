@@ -40,12 +40,18 @@ namespace T4MVC
             {
                 public readonly string _alert = "_alert";
                 public readonly string _Confirm = "_Confirm";
+                public readonly string _header_layout = "_header_layout";
+                public readonly string _Layout___Copy = "_Layout - Copy";
                 public readonly string _Layout = "_Layout";
+                public readonly string _section_layout = "_section_layout";
                 public readonly string Error = "Error";
             }
             public readonly string _alert = "~/Views/Shared/_alert.cshtml";
             public readonly string _Confirm = "~/Views/Shared/_Confirm.cshtml";
+            public readonly string _header_layout = "~/Views/Shared/_header_layout.cshtml";
+            public readonly string _Layout___Copy = "~/Views/Shared/_Layout - Copy.cshtml";
             public readonly string _Layout = "~/Views/Shared/_Layout.cshtml";
+            public readonly string _section_layout = "~/Views/Shared/_section_layout.cshtml";
             public readonly string Error = "~/Views/Shared/Error.cshtml";
         }
     }

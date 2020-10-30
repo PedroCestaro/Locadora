@@ -1,0 +1,190 @@
+﻿@model Simple.Entities.Page<TMovie>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Filmes
+</h2>
+<div class="row" style="margin: 30px 0; text-align: right">
+    <div class="col-lg-12 text-right">
+        <a class="btn btn-primary btn-lg" data-toggle="tooltip" title="Cadastrar"
+           href="@Url.Action(MVC.Admin.Filmes.Cadastrar())">
+            <i class="fas fa-plus"></i> Cadastrar
+        </a>
+    </div>
+</div>
+<div class="row filtros"
+     style="display: flex;
+            flex-flow:row;
+            justify-content: space-between;
+        "
+     >
+    <div class="form-group">
+        @this.Label("Nome do Filme").Class("nome-filme").Value("Nome:")
+        <input type="text" class="nome-filme" />
+        <button class="busca">Buscar</button>
+    </div>
+    <div class="form-group">
+        @this.Label("Categorias").Class("Categorias").Value("Categorias:")
+        @this.AutoSelect("Categorias").Class("Categorias").FirstOption("", "Selecione uma opção")
+    </div>
+    <div>
+        <label>Status do filme</label>
+        <select class="status">
+            <option value="null">Selecione uma opção</option>
+            <option value="true">Ativo</option>
+            <option value="false">Inativo</option>
+        </select>
+    </div>
+</div>
+<div class="lista-filme">
+    @*<div class="col-lg-12">
+        <table class="table table-bordered table-striped tablesorter table-bordered shadow" style="box-shadow: red">
+            <thead>
+                <tr>
+                    <th class="header">
+                        Código
+                    </th>
+                    <th class="header">
+                        Nome
+                    </th>
+                    <th class="header">
+                        Gêneros
+                    </th>
+                    <th class="header">
+                        Duração
+                    </th>
+                    <th class="header">
+                        Formato
+                    </th>
+                    <th class="header">
+                        Tipo
+                    </th>
+                    <th class="header">
+                        Ativo
+                    </th>
+                    <th class="header">
+                        Criado em
+                    </th>
+                    <th class="header">
+                        Estoque
+                    </th>
+                    <th class="header text-center">
+                        Ação
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Code
+                            </td>
+                            <td>
+                                @item.Name
+                            </td>
+                            <td>
+                                @foreach (var genero in item.TMovieCategories)
+                                {
+                                    <span>- @genero.Category.Name</span>
+                                }
+                            </td>
+                            <td>
+                                @item.Duration
+                            </td>
+                            <td>
+                                @item.EnumFormatMovie.Description()
+                            </td>
+                            <td>
+                                @item.EnumTypeMovie.Description()
+                            </td>
+                            <td>
+                                @(item.IsActive ? "Sim" : "Não")
+                            </td>
+                            <td>
+                                @item.Date.DayMonthAndYear()
+                            </td>
+                            <td>
+                                @item.Stock
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-primary btn-xs" data-toggle="tooltip" title="Editar"
+                                   href="@Url.Action(MVC.Admin.Filmes.Editar(item.Id))">
+                                    <i class="fas fa-pencil"></i> Editar
+                                </a>
+                                <a class="btn btn-danger ajax-modal btn-xs" data-toggle="tooltip" title="Excluir"
+                                        href="@Url.Action(MVC.Admin.Filmes.Excluir(item.Id))">
+                                    <i class="fas fa-trash"></i> Excluir
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="15" class="text-center">
+                            <strong>Nenhum registro encontrado</strong>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>*@
+    @Html.Partial("_lista_de_filmes",Model)
+</div>
+
+<script type="text/javascript">
+      $(function () {
+
+     $("button.busca").click(function () {
+         var nome = $("input.nome-filme").val();
+         var categoriaId = $("select.Categorias").val();
+         var situacao = $("select.status").val();
+         $('div.lista-filme').html("<img src='@Links.Content.images._45_gif' alt='loading' style='margin: 15px auto;'/>");
+         $.post("@Url.Action(MVC.Admin.Filmes.ListarFilmes())", { nome: nome, categorias: categoriaId, ativo: situacao }, function (data) {//variavel do backend, variavel que eu passo pelo front
+             $("div.lista-filme").html(data);
+          });
+     });
+    });
+    @*$(function Busca() {
+        var nome = $("input.nome-filme").val();
+        var categoriaId = $("select.Categorias").val();
+        var situacao = $("select.status").val();
+        $('div.lista-filme').html("<img src='@Links.Content.images._45_gif' alt='loading' style='margin: 15px auto;'/>");
+         $.post("@Url.Action(MVC.Admin.Filmes.ListarFilmes())", { nome: nome, categorias: categoriaId, ativo: situacao }, function (data) {//variavel do backend, variavel que eu passo pelo front
+             $("div.lista-filme").html(data);
+          });
+    });*@
+
+    $(function () {
+
+        $("select.Categorias").on("change",function () {
+            var nome = $("input.nome-filme").val();
+            var categoriaId = $("select.Categorias").val();
+            var situacao = $("select.status").val();
+            $('div.lista-filme').html("<img src='@Links.Content.images._45_gif' alt='loading' style='margin: 15px auto;'/>");
+             $.post("@Url.Action(MVC.Admin.Filmes.ListarFilmes())", { nome: nome, categorias: categoriaId, ativo: situacao }, function (data) {//variavel do backend, variavel que eu passo pelo front
+                 $("div.lista-filme").html(data);
+          });
+        });
+
+        $("select.status").on("change",function () {
+            var nome = $("input.nome-filme").val();
+            var categoriaId = $("select.Categorias").val();
+            var situacao = $("select.status").val();
+            $('div.lista-filme').html("<img src='@Links.Content.images._45_gif' alt='loading' style='margin: 15px auto;'/>");
+             $.post("@Url.Action(MVC.Admin.Filmes.ListarFilmes())", { nome: nome, categorias: categoriaId, ativo: situacao }, function (data) {//variavel do backend, variavel que eu passo pelo front
+                 $("div.lista-filme").html(data);
+          });
+         });
+
+        $("button.busca").click(function () {
+            Busca();
+          });
+    });
+</script>

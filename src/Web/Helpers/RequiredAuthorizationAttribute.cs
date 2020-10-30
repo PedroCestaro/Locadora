@@ -46,14 +46,10 @@ namespace Locadora.Web.Helpers
             else
                 rUrl = filterContext.HttpContext.Request.Url.AbsoluteUri.Replace("/Web_deploy", "");
 
-            if (rUrl.Contains("painel"))
-                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "Controller", "Home" }, { "Action", "Login" }, { "Area", "Painel" }, { "returnUrl", rUrl } });
-            else if (rUrl.Contains("pdv"))
-                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "Controller", "Home" }, { "Action", "Login" }, { "Area", "Pdv" }, { "returnUrl", rUrl } });
-            else if (rUrl.Contains("ev"))
-                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "Controller", "Home" }, { "Action", "Login" }, { "Area", "Ev" }, { "returnUrl", rUrl } });
-            else
-                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "Controller", "Clientes" }, { "Action", "Login" }, { "Area", "" }, { "returnUrl", rUrl } });
+            if (rUrl.Contains("Admin"))
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "Controller", "Usuarios" }, { "Action", "Login" }, { "Area", "Admin" }, { "returnUrl", rUrl } });
+           else
+            filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "Controller", "Clientes" }, { "Action", "Login" }, { "Area", "Cliente" }, { "returnUrl", rUrl } });
         }
 
         private static void NotAuthorizated(ActionExecutingContext filterContext)

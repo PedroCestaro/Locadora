@@ -1,8 +1,6 @@
 C:\Projetos\locadora\src\Web\bin\Locadora.Web.dll.config
 C:\Projetos\locadora\src\Web\bin\Locadora.Web.dll
 C:\Projetos\locadora\src\Web\bin\Locadora.Web.pdb
-C:\Projetos\locadora\src\Web\bin\ActionMailer.Net.dll
-C:\Projetos\locadora\src\Web\bin\ActionMailer.Net.Mvc.dll
 C:\Projetos\locadora\src\Web\bin\Antlr3.Runtime.dll
 C:\Projetos\locadora\src\Web\bin\BouncyCastle.Crypto.dll
 C:\Projetos\locadora\src\Web\bin\ICSharpCode.SharpZipLib.dll
@@ -64,3 +62,8 @@ C:\Projetos\locadora\src\Web\obj\Debug\Web.csproj.CoreCompileInputs.cache
 C:\Projetos\locadora\src\Web\obj\Debug\Web.csproj.CopyComplete
 C:\Projetos\locadora\src\Web\obj\Debug\Locadora.Web.dll
 C:\Projetos\locadora\src\Web\obj\Debug\Locadora.Web.pdb
+C:\Projetos\locadora\src\Web\bin\DocumentFormat.OpenXml.dll
+C:\Projetos\locadora\src\Web\bin\System.IO.FileSystem.Primitives.dll
+C:\Projetos\locadora\src\Web\bin\System.IO.Packaging.dll
+C:\Projetos\locadora\src\Web\bin\DocumentFormat.OpenXml.xml
+C:\Projetos\locadora\src\Web\bin\System.IO.Packaging.xml

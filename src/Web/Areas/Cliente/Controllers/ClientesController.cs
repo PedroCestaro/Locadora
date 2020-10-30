@@ -1,5 +1,6 @@
 ﻿using Locadora.Domain;
 using Locadora.Helpers;
+using Locadora.Web.Areas.Admin.ViewModel;
 using Locadora.Web.Helpers;
 using Microsoft.Ajax.Utilities;
 using NPOI.OpenXmlFormats.Dml;
@@ -29,7 +30,7 @@ namespace Locadora.Web.Areas.Cliente.Controllers
             return View(clientes);
         }
         
-        [RequiresAuthorization]
+  
         public virtual ActionResult Cadastrar()
         {
             var cliente = new TClient();//instancio um novo obj
@@ -46,6 +47,7 @@ namespace Locadora.Web.Areas.Cliente.Controllers
             {
                 model.Password = TClient.HashPassword(model.PasswordString);
                 model.Save();//insert no bd
+                if(model.Preference != null)
                 TPreference.SavePreferences(model);
                 TempData["Alerta"] = new Alert("success", "Cadastro realizado com sucesso");
                 return RedirectToAction("Index");
@@ -78,13 +80,14 @@ namespace Locadora.Web.Areas.Cliente.Controllers
                 model.Edit();//chama o método feito na classe
                 TPreference.SavePreferences(model);
                 TempData["Alerta"] = new Alert("success", "Alterações realizadas com sucesso");
-                return RedirectToAction("Index");
+                return RedirectToAction("MinhaConta");
             }
             catch (SimpleValidationException ex)
             {
                 ViewBag.MostrarSenha = false;
                 ViewBag.EnumProfileClient = EnumHelper.ListAll<ProfileClient>().ToSelectList(x => x, x => x.Description());
-                return HandleViewException(model, ex);
+                TempData["Alerta"] = new Alert("error", "Alterações não salvas" + ex);
+                return RedirectToAction("Editar");
             }
         }
 
@@ -111,17 +114,16 @@ namespace Locadora.Web.Areas.Cliente.Controllers
             //A estrutura pode ser feita no model server
             var reservas = TReservation.List(x => x.Client.Id == client.Id);
             var preferences = client.TPreferences.Select(x => x.Category.Id).ToList();//Carregando o ID de categorias atrelados a prefenrecia do Client.Select funciona apenas com List, Load carrega apenas 1 obj, não a lista//Carrego o nome dos filmes pelo ID de Categoria
-            var movieCategory = TMovieCategory.List(x => preferences.Contains(x.Category.Id)).ToList();//percorro a lista de preferencias de acorodo com o Id passado                                                          
-            if (movieCategory.Count != 0)
+            if (preferences.Count > 0)
             {
+                var movieCategory = TMovieCategory.List(x => preferences.Contains(x.Category.Id)).Select(x=>x.Movie).ToList();//percorro a lista de preferencias de acorodo com o Id passado                                                          
                 return View(movieCategory);//passando a lista para a view, cuja esta esperando essa lista.
             }
-
             else
             {
-                return View(TMovieCategory.ListAll());
+                return View(TMovie.ListAll());
             }
-                
+               
         }
 
        
@@ -144,8 +146,8 @@ namespace Locadora.Web.Areas.Cliente.Controllers
             }
             else
             {
-                
-                ViewBag.Alerta = new Alert("error","Usuário não encontrado");
+
+                TempData["Alerta"] = new Alert("error", "Cliente não encontrado");
                 return RedirectToAction("Login");
             }
 
@@ -154,7 +156,8 @@ namespace Locadora.Web.Areas.Cliente.Controllers
         public virtual ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction(MVC.Cliente.Clientes.Login());
+            TempData["Alerta"] = new Alert("success", "Até breve!");
+            return RedirectToAction(MVC.Home.Index());
         }
 
         public virtual ActionResult ListarGenero(int id)
@@ -175,33 +178,8 @@ namespace Locadora.Web.Areas.Cliente.Controllers
             return PartialView("_lista-de-filmes", filme);
         }
 
-        [RequiresAuthorization]
-        public virtual ActionResult Reservas()
-        {
-            var reserva = new TReservation();
-            reserva.Returned = false;
-            ViewBag.Filme = TMovie.ListAll().ToSelectList(x => x.Id, x => x.Name);
-            return View(reserva);
-        }
+       
 
-        [HttpPost]
-        public virtual ActionResult Reservas(TReservation reservation)
-        {
-            var cliente = (TClient)ViewBag.Usuario;
-            reservation.Client = cliente;
-            reservation.Save();
-            TIten.SaveItem(reservation);
-            TempData["Alerta"] = new Alert("success", "Pedido de reserva cadastrado!");
-            return RedirectToAction("MinhaConta");
-        }
-
-
-        public virtual ActionResult ListarReservas()
-        {
-            var cliente = (TClient)ViewBag.Usuario;
-            var reservas =  TIten.List(x => x.Reservation.Client.Id == cliente.Id);
-            return PartialView("_minhas_reservas", reservas);
-        }
 
     }
 }

@@ -8,6 +8,9 @@ using System.Security.Cryptography;
 using System.Runtime.CompilerServices;
 using FluentNHibernate.Automapping;
 using NHibernate.Criterion;
+using NHibernate;
+using NHibernate.SqlCommand;
+using Simple.Validation;
 
 namespace Locadora.Services
 {
@@ -71,5 +74,39 @@ namespace Locadora.Services
             var hashTryPassword = HashPassword(login.Password);
             return userPassword.SequenceEqual(hashTryPassword)? user : null;
         }
+
+        public ICriteria SearchCriteria(ClientSearch search)
+        {
+            var criteria = Session.CreateCriteria<TReservation>();
+
+            if (!string.IsNullOrWhiteSpace(search.name))
+            {
+                criteria.SetFetchMode("Client", FetchMode.Eager);//INNER JOIN DO CRITERIA
+                criteria.CreateAlias("Client", "client", JoinType.LeftOuterJoin);
+                criteria.Add(Restrictions.Eq("client.Name", search.name));
+            }
+            else
+            {
+                SimpleValidationException ex;
+               
+            }
+           
+            return criteria;
+        }
+
+        public List<TReservation> Search(ClientSearch search)
+        {
+            var criteria = SearchCriteria(search);
+            criteria.SetFirstResult((search.page - 1) * search.take).SetMaxResults(search.take);
+            return criteria.List<TReservation>().ToList();
+        }
+
+        public int CountSearch(ClientSearch search)
+        {
+            var criteria = SearchCriteria(search);
+            return criteria.SetProjection(Projections.CountDistinct("Id")).UniqueResult<int>();
+        }
+
+
     }
 }

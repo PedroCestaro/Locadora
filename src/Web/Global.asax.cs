@@ -52,7 +52,7 @@ namespace Locadora.Web
             AreaRegistration.RegisterAllAreas();
             RegisterRoutes(RouteTable.Routes);
 
-            DefaultModelBinder.ResourceClassKey = typeof(ValidationMessages).Name;
+            //DefaultModelBinder.ResourceClassKey = typeof(ValidationMessages).Name;
             ModelBinders.Binders.DefaultBinder = new EntityModelBinder();
 
             ModelValidatorProviders.Providers.Clear();

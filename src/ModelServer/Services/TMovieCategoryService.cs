@@ -11,7 +11,7 @@ namespace Locadora.Services
     {
         public void SaveCategories(TMovie model)//array no movie
         {
-           
+            TMovieCategory.Delete(x => x.Movie.Id == model.Id);
             for (int i = 0; i < model.Categories.Length; i++)
             {
                 new TMovieCategory()

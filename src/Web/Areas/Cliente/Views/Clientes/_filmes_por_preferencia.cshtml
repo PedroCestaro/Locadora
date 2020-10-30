@@ -1,13 +1,10 @@
-﻿@model List<TMovieCategory>
+﻿@model List<TMovie>
+
 
 @foreach (var movie in Model)
 {
-    <div style="      
-        border: 1px solid purple;
-        padding: 1rem;
-        border-radius: 2rem;">
-        <p><strong>@movie.Movie.Name</strong></p>
-        <button style="border-radius:2rem; background:mediumpurple;"  onclick="location.href='@Url.Action(MVC.Cliente.Clientes.Reservas())'">Reservar</button>
+    <div class="border border-danger rounded-pill p-1 text-center bg-dark">
+        <p class="card__title"><strong>@movie.Name</strong></p>
     </div>
     <br />
 }

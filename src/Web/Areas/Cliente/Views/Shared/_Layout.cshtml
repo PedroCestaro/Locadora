@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@(ViewBag.Title ?? "Locadora")</title>
+    <meta name="viewport" content="width=device-width">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet">
+    <!-- CSS -->
+
+    @H.Stylesheet("bootstrap.css")
+    @H.Stylesheet("css/style.css")
+    @H.Stylesheet("css/toastr.css") 
+    @H.Stylesheet("Flix/css/bootstrap-reboot.min.css")
+    @H.Stylesheet("Flix/css/bootstrap-grid.min.css")
+    @H.Stylesheet("Flix/css/owl.carousel.min.css")
+    @H.Stylesheet("Flix/css/jquery.mCustomScrollbar.min.css")
+    @H.Stylesheet("Flix/css/nouislider.min.css")
+    @H.Stylesheet("Flix/css/ionicons.min.css")
+    @H.Stylesheet("Flix/css/plyr.css")
+    @H.Stylesheet("Flix/css/photoswipe.css")
+    @H.Stylesheet("Flix/css/default-skin.css")
+    @H.Stylesheet("Flix/css/main.css")
+    @H.Script("jquery-1.7.2.min.js")
+    @H.Script("jquery-3.0.0.min.js")
+    @H.Script("toastr.js")
+    @H.Script("modernizr-2.5.3-respond-1.1.0.min.js")
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="icon/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="icon/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icon/apple-touch-icon-144x144.png">
+
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Dmitry Volkov">
+    <title>Locadora</title>
+
+</head>
+<body class="body">
+
+    @Html.Partial("_header_layout")
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    @H.Script("Flix/js/jquery-3.3.1.min.js")
+    @H.Script("Flix/js/bootstrap.bundle.min.js")
+    @H.Script("Flix/js/owl.carousel.min.js")
+    @H.Script("Flix/js/jquery.mousewheel.min.js")
+    @H.Script("Flix/js/jquery.mCustomScrollbar.min.js")
+    @H.Script("Flix/js/wNumb.js")
+    @H.Script("Flix/js/nouislider.min.js")
+    @H.Script("Flix/js/plyr.min.js")
+    @H.Script("Flix/js/jquery.morelines.min.js")
+    @H.Script("Flix/js/photoswipe.min.js")
+    @H.Script("Flix/js/photoswipe-ui-default.min.js")
+    @H.Script("Flix/js/main.js")
+    @Html.Partial("_alert")
+    @H.Script("bootstrap/bootstrap.min.js")
+    @H.Script("jquery.livequery.min.js")
+    @H.Script("master.js")
+    @H.Script("jquery.validate.min.js")
+    @H.Script("messages_pt_br.js")
+</body>
+
+</html>

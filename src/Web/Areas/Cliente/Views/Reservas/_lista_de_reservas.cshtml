@@ -1,0 +1,55 @@
+﻿@model Simple.Entities.Page<TReservation>
+@foreach (var item in Model)
+{
+    <div class="rounded p-3 bg-dark ">
+        <p class="card__title"><strong>Id da Reserva: </strong>@item.Id</p>
+        <p class="card__title"><strong>Nome do Cliente: </strong>@item.Client.Name</p>
+        <p class="card__title"><strong>Filme(s):</strong></p>
+        <div>
+            @foreach (var movie in TIten.List(x => x.Reservation.Id == item.Id))
+            {
+                <p class="card__title">- @movie.Movie.Name</p>
+                <p class="card__title">Quantidade: @movie.Quantity</p>
+            }
+        </div>
+        <p class="card__title"><strong>Retirada: </strong>@item.Withdraw</p>
+        <p class="card__title"><strong>Devolução: </strong>@item.Devolution</p>
+        <p class="card__title"><strong>Valor: R$</strong>@item.TItens.Sum(x => x.Value).PriceFormatWithDot() </p>
+        <p class="card__title">
+            <strong>Status: </strong>
+            @if (@item.Returned)
+            {
+                <span>Devolvida</span>
+            }
+            else
+            {
+                <span>Ativa</span>
+            }
+        </p>
+    </div>
+    <br />
+}
+@if (Model.TotalCount > 10)
+{
+    var dictionary = new Dictionary<Int32, Int32>();
+    dictionary.Add(Model.TotalCount, 10);
+    @Html.Partial("_pagination", dictionary)
+<script type="text/javascript">
+        $(function () {
+            $(".paginate").click(function () {
+                var pagina = $(this).prop("id").split('-')[1];
+                $('div.lista-de-reservas').html("<img src='@Links.Content.images._45_gif' alt='loading' style='margin: 15px auto;'/>");
+                $('.pagination').remove();
+                $.get("@(Url.Action(MVC.Cliente.Reservas.ListarReservas()))", { pagina: pagina }, function (data) {
+                    $('div.lista-de-reservas').html(data);
+                });
+            });
+        });
+</script>
+}
+
+
+
+
+
+

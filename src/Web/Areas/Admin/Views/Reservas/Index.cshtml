@@ -1,0 +1,97 @@
+﻿@model Simple.Entities.Page<TReservation>
+@{
+    ViewBag.Title = "Reservas";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var cliente = ViewBag.Cliente;
+}
+<h2>Reservas De Clientes</h2>
+
+<div class="row"
+     style="display: flex;
+            flex-flow:row;
+            justify-content: space-between;
+        "
+     >
+    <div class="col-lg-12">
+        @this.Label("Cliente").Class("Cliente").Value("Cliente:")
+        <input type="text" class="loginCliente" />
+        <button class="busca" type="submit">Buscar</button>
+    </div>
+    <div class="col-lg-12">
+        @this.Label("Filmes").Class("Filmes").Value("Filmes:")
+        @this.AutoSelect("Filmes").Class("Filmes").FirstOption("", "Selecione uma opção")
+    </div>
+    <div>
+        <label>Status da Reserva</label>
+        <select class="status">
+            <option value="null">Selecione uma opção</option>
+            <option value="false">Ativa</option>
+            <option value="true">Devolvida</option>
+        </select>
+        
+
+    </div>
+
+    
+
+</div>
+<div class="lista-de-reservas"
+     style="margin:auto;"
+     >
+    @Html.Partial("_lista_de_reservas", Model)
+</div>
+<script type="text/javascript">
+
+    $(function () {
+
+        //aqui apenas refiro as classes
+     $("button.busca").click(function () {
+         var login = $("input.loginCliente").val();
+         var movieId = $("select.Filmes").val();
+         var returned = $("select.status").val();
+         $('div.lista-de-reservas').html("<img src='@Links.Content.images._45_gif' alt='loading' style='margin: 15px auto;'/>");
+         $.post("@Url.Action(MVC.Admin.Reservas.ListarReservas())", { login: login, movieId: movieId, returned:returned }, function (data) {//variavel do backend, variavel que eu passo pelo front
+             $("div.lista-de-reservas").html(data);
+          });
+     });
+    });
+
+    //aqui eu referêncio os valores
+    @*$(function Busca(pagina) {
+         var login = $("input.loginCliente").val();
+         var movieId = $(".Filmes").val();
+        var returned = $(".status").val();
+         $('div.lista-de-reservas').html("<img src='@Links.Content.images._45_gif' alt='loading' style='margin: 15px auto;'/>");
+         $.post("@Url.Action(MVC.Admin.Reservas.ListarReservas())", { login: login, movieId: movieId, returned:returned }, function (data) {//variavel do backend, variavel que eu passo pelo front
+             $("div.lista-de-reservas").html(data);
+          });
+    });*@
+    //aqui eu passo os gatilhos
+    $(function () {
+
+        $("select.Filmes").on("change",function () {
+            var id = $(this).val();
+            var login = $("input.loginCliente").val();
+            var returned = $(".status").val();
+            $('div.lista-de-reservas').html("<img src='@Links.Content.images._45_gif' alt='loading' style='margin: 15px auto;'/>");
+            $.post("@Url.Action(MVC.Admin.Reservas.ListarReservas())", { movieId: id, login: login, returned: returned }, function (data) {
+             $("div.lista-de-reservas").html(data);
+          });
+        });
+
+        $("select.status").on("change",function () {
+            var status = $(this).val();
+            var login = $("input.loginCliente").val();
+            var movieId = $(".Filmes").val();
+            $('div.lista-de-reservas').html("<img src='@Links.Content.images._45_gif' alt='loading' style='margin: 15px auto;'/>");
+            $.post("@Url.Action(MVC.Admin.Reservas.ListarReservas())", { returned: status, movieId: movieId, login: login }, function (data) {
+             $("div.lista-de-reservas").html(data);
+          });
+         });
+
+        $("button.busca").click(function () {
+            $.Busca(1);
+          });
+    });
+
+</script>

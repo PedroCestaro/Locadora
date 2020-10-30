@@ -1,8 +1,14 @@
 ﻿@model TMovie
-<div class="col-lg-12 item-filme"> 
-    <input type="hidden"  name="Movies" class="id-filme" value="@Model.Id" /> @*Chama o array 'movies'*@
-        <p>
-        <strong>@Model.Name</strong> - <a class="excluir-filme" data-nome="@Model.Name" style="cursor: pointer">Excluir</a>
-    </p>
-</div>
+<tr class="col-lg-12 item-filme">
+    <input type="hidden" name="Movies" class="id-filme" value="@Model.Id"></input>
+
+    @*<strong>@Model.Name</strong> - <a class="excluir-filme" data-nome="@Model.Name" style="cursor: pointer">Excluir</a>*@
+    @*</strong>*@
+    <td>@Model.Name</td>
+    <td><input name="Quantity" type="number" required="required" min="1" placeholder="informe a quantidade"/></td>
+    <td><a class="excluir-filme" data-nome="@Model.Name" style="cursor: pointer">Excluir</a></td>
+</tr>
+
+
+
 

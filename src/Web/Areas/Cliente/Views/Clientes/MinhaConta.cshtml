@@ -1,17 +1,41 @@
-﻿@model List<TMovieCategory>
-@{ 
-    ViewBag.Title = "MInhaConta";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-   
+﻿@model List<TMovie>
+@{
+    Layout = "~/Areas/Cliente/Views/Shared/_Layout.cshtml";
 }
-<div>
-    <h1 style="box-shadow: 2rem 1rem 1rem mediumpurple; color:mediumpurple; font-weight:bolder;">MinhaConta, @ViewBag.Usuario.Name</h1>
+<section class="home">
+    <!-- home bg -->
+    <div class="owl-carousel home__bg">
+        <div class="item home__cover" data-bg="img/home/home__bg.jpg"></div>
+        <div class="item home__cover" data-bg="img/home/home__bg2.jpg"></div>
+        <div class="item home__cover" data-bg="img/home/home__bg3.jpg"></div>
+        <div class="item home__cover" data-bg="img/home/home__bg4.jpg"></div>
+    </div>
+    <!-- end home bg -->
 
-    <button onclick="location.href='@Url.Action(MVC.Cliente.Clientes.Logout())'">Logout</button>
-</div>
-<br />
+    <div class="container">
+        <div class="row">
+            <div class="col-12 row justify-content-between">
+                <h1 class="home__title">Minha Conta, <b>@ViewBag.Usuario.Name</b></h1>
+                <button type="button" class="btn btn-dark btn-outline-light" onclick="location.href='@Url.Action(MVC.Cliente.Reservas.NovaReserva())'">Reservar Filmes</button>
+            </div>
 
+        </div>
+      
+    </div>
+    <br/>
+    <p class="details__title">Algumas sugestões, segundo suas preferencias</p>
+</section>
 
-@*@Html.Partial("_listar-filme", Model);*@
-@Html.Partial("_filmes_por_preferencia", Model);
+<!--<div class="container">
 
+    <!--<h1 style="color:mediumpurple; font-weight:bolder;">MinhaConta, @ViewBag.Usuario.Name</h1>
+    <br />-->-->
+    <!--@*<div style="display:flex; flex-direction:row; justify-content:space-between;">*@
+    <h3>Sugestões segundo suas preferencias</h3>
+    
+    <br />
+    <div>
+    </div>
+</div>-->
+<div class="item home__cover" data-bg="img/home/home__bg2.jpg" style="background: rgba(0, 0, 0, 0) url(&quot;img/home/home__bg2.jpg&quot;) no-repeat scroll center center / cover; height: 335px;"></div>
+@Html.Partial("_filmes_por_preferencia", Model)

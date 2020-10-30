@@ -15,13 +15,20 @@ namespace Locadora.Services
         public void SavePreferences(TClient model)//array no meu cliente
         {
             TPreference.Delete(x => x.Client.Id == model.Id);
-            for (int i = 0; i < model.categories.Length; i++)
+            if(model.categories != null)
             {
-                new TPreference()
+                for (int i = 0; i < model.categories.Length; i++)
                 {
-                    Client = model,
-                    Category = TCategory.Load(model.categories[i])
-                }.Save();
+                    new TPreference()
+                    {
+                        Client = model,
+                        Category = TCategory.Load(model.categories[i])
+                    }.Save();
+                }
+            }
+            else
+            {
+                TPreference.Delete(x => x.Client.Id == model.Id);
             }
         }
     }

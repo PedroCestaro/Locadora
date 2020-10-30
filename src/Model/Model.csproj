@@ -93,6 +93,9 @@
       <Link>Properties\GlobalInfo.cs</Link>
     </Compile>
     <Compile Include="AuthorizationException.cs" />
+    <Compile Include="Domain\ClassSearch\CategorySearch.cs" />
+    <Compile Include="Domain\ClassSearch\MovieSearch.cs" />
+    <Compile Include="Domain\ClassSearch\ClientSearch.cs" />
     <Compile Include="Domain\ClassSearch\ReservationSearch.cs" />
     <Compile Include="Configurator.cs" />
     <Compile Include="Domain\Alert.cs" />

@@ -1,0 +1,48 @@
+﻿<header class="header">
+    <div class="header__wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="header__content">
+                        <a onclick="location.href='@Url.Action(MVC.Cliente.Clientes.MinhaConta())'" class="header__logo">
+                            <h2 class="title" style="color:ghostwhite">Minha Conta</h2>
+                        </a>                      
+                        <ul class="header__nav">
+                            <li class="header__nav-item">
+                                <a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reservas</a>
+
+                                <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
+                                    <li><a class="header__nav-link active" onclick="location.href='@Url.Action(MVC.Cliente.Reservas.Index())'">Reservas Ativas</a></li>
+                                    <li><a href="catalog2.html">Reservas Encerradas</a></li>
+                                </ul>
+                            </li>
+                            @*<li class="header__auth">
+                                <button class="header__search-btn" type="button">
+                                    <i class="icon ion-ios-search"></i>
+                                </button>
+                            </li>*@
+                        </ul>
+
+                        <a onclick="location.href='@Url.Action(MVC.Cliente.Clientes.Logout())'" class="header__sign-in">
+                            <i class="icon ion-ios-log-in"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<form action="#" class="header__search">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="header__search-content">
+                        <input type="text" placeholder="Search for a movie, TV Series that you are looking for">
+
+                        <button type="button">search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>*@
+</header>

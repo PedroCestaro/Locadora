@@ -10,11 +10,13 @@ namespace Locadora.Domain
     {
 
         public virtual List<TMovie> Movie {get;set;}
-        public virtual int [] Movies { get; set; }
+        public virtual int? [] Movies { get; set; }
         
         public virtual int [] Clientes { get; set; }
 
         public virtual TIten Item { get; set; }
+
+        public virtual int? [] Quantity { get; set; }
 
     }
 }

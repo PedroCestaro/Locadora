@@ -38,22 +38,34 @@ namespace Locadora.Domain
         {
             _identityGetter = identityGetter;//recebendo a chave de identificação
             _isAuthenticated = TryGet(x => x.IsAuthenticated, false);//validando se está autenticado ou não
-
+            var logg = false;
             var username = TryCast(x => x.Name, string.Empty);//chama a coleção declarada abaixo
             if (_isAuthenticated && !string.IsNullOrEmpty(username))//se _isAuthenticated e o username != null
 
             {
                     var model = TClient.FindByUsername(username);
+                if (model == null)
+                    logg = false;
+                else    
                     if (model != null)
-                        _user = new UserSecurity(model);
+                {
+                    _user = new UserSecurity(model);
+                    logg = true;
+                }
+
             }
-            else if(_user == null)
+             if(logg == false)
             {
                 var model = TUser.FindByUsername(username);
                 if (model != null)
+                {
                     _user = new UserSecurity(model);
+                    logg = true;
+                }
+                   
             }
             else
+            if(logg == false)
             {
                 _user = null;
                 _isAuthenticated = false;

@@ -115,8 +115,6 @@ namespace Locadora.Web.Areas.Cliente.Controllers
             public readonly string ListarGenero = "ListarGenero";
             public readonly string ListarCategoria = "ListarCategoria";
             public readonly string ListarFilmes = "ListarFilmes";
-            public readonly string Reservas = "Reservas";
-            public readonly string ListarReservas = "ListarReservas";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -132,8 +130,6 @@ namespace Locadora.Web.Areas.Cliente.Controllers
             public const string ListarGenero = "ListarGenero";
             public const string ListarCategoria = "ListarCategoria";
             public const string ListarFilmes = "ListarFilmes";
-            public const string Reservas = "Reservas";
-            public const string ListarReservas = "ListarReservas";
         }
 
 
@@ -195,14 +191,6 @@ namespace Locadora.Web.Areas.Cliente.Controllers
         {
             public readonly string id = "id";
         }
-        static readonly ActionParamsClass_Reservas s_params_Reservas = new ActionParamsClass_Reservas();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Reservas ReservasParams { get { return s_params_Reservas; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Reservas
-        {
-            public readonly string reservation = "reservation";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -219,13 +207,12 @@ namespace Locadora.Web.Areas.Cliente.Controllers
                 public readonly string _lista_de_filmes = "_lista-de-filmes";
                 public readonly string _listar_categoria = "_listar-categoria";
                 public readonly string _listar_genero = "_listar-genero";
-                public readonly string _minhas_reservas = "_minhas_reservas";
                 public readonly string cadastrar = "cadastrar";
                 public readonly string editar = "editar";
                 public readonly string Index = "Index";
                 public readonly string Login = "Login";
                 public readonly string MinhaConta = "MinhaConta";
-                public readonly string Reservas = "Reservas";
+                public readonly string oldLayout = "oldLayout";
             }
             public readonly string _excluir = "~/Areas/Cliente/Views/Clientes/_excluir.cshtml";
             public readonly string _filmes_por_preferencia = "~/Areas/Cliente/Views/Clientes/_filmes_por_preferencia.cshtml";
@@ -233,13 +220,12 @@ namespace Locadora.Web.Areas.Cliente.Controllers
             public readonly string _lista_de_filmes = "~/Areas/Cliente/Views/Clientes/_lista-de-filmes.cshtml";
             public readonly string _listar_categoria = "~/Areas/Cliente/Views/Clientes/_listar-categoria.cshtml";
             public readonly string _listar_genero = "~/Areas/Cliente/Views/Clientes/_listar-genero.cshtml";
-            public readonly string _minhas_reservas = "~/Areas/Cliente/Views/Clientes/_minhas_reservas.cshtml";
             public readonly string cadastrar = "~/Areas/Cliente/Views/Clientes/cadastrar.cshtml";
             public readonly string editar = "~/Areas/Cliente/Views/Clientes/editar.cshtml";
             public readonly string Index = "~/Areas/Cliente/Views/Clientes/Index.cshtml";
             public readonly string Login = "~/Areas/Cliente/Views/Clientes/Login.cshtml";
             public readonly string MinhaConta = "~/Areas/Cliente/Views/Clientes/MinhaConta.cshtml";
-            public readonly string Reservas = "~/Areas/Cliente/Views/Clientes/Reservas.cshtml";
+            public readonly string oldLayout = "~/Areas/Cliente/Views/Clientes/oldLayout.cshtml";
         }
     }
 
@@ -409,40 +395,6 @@ namespace Locadora.Web.Areas.Cliente.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ListarFilmes);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             ListarFilmesOverride(callInfo, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void ReservasOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Reservas()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reservas);
-            ReservasOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void ReservasOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Locadora.Domain.TReservation reservation);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Reservas(Locadora.Domain.TReservation reservation)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reservas);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "reservation", reservation);
-            ReservasOverride(callInfo, reservation);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void ListarReservasOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult ListarReservas()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ListarReservas);
-            ListarReservasOverride(callInfo);
             return callInfo;
         }
 

@@ -1,0 +1,25 @@
+﻿@{
+    var filmes = TMovie.ListAll();
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Bem Vindo!</h1>
+<div class="navbar header">
+    
+    <h3 style="color:darkslateblue">Alguns de nossos títulos:</h3>
+    <br />
+    @foreach (var item in filmes)
+    {
+       <h4>@item.Name</h4>
+    }
+</div>
+<div class="row">
+    <div class="span4">
+        <h2>
+            Faça seu Login
+        </h2>
+        <div>
+            <button type="button" class="btn btn-primary btn-lg" onclick="location.href = '@Url.Action(MVC.Cliente.Clientes.Login())'">Cliente</button>
+            <button type="button" class="btn btn-primary btn-lg" onclick="location.href = '@Url.Action(MVC.Admin.Usuarios.Login())'">Usuário</button>
+        </div>
+
+    </div>

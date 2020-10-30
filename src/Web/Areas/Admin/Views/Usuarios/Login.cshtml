@@ -10,12 +10,12 @@
         {
             <div class="col-lg-12">
                 @this.Label(x => x.User).Class("control-label").Value("Login:")
-                @this.TextBox(x => x.User).Class("required form-control").Autofocus(true)
+                @this.TextBox(x => x.User).Class("required form-control").Autofocus(true).Required(true)
                 @Html.ValidationMessageFor(x => x.User)
             </div>
             <div class="col-lg-12">
                 @this.Label(x => x.Password).Class("control-label").Value("Senha:")
-                @this.Password(x => x.Password).Class("required form-control").Autofocus(true)
+                @this.Password(x => x.Password).Class("required form-control").Autofocus(true).Required(true)
                 @Html.ValidationMessageFor(x => x.Password)
             </div>
             <div class="col-md-12 text-center" style="margin-top: 15px;">

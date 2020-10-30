@@ -3,6 +3,8 @@ using Locadora.Domain;
 using Simple.Services;
 using Locadora.Services;
 using System;
+using NHibernate;
+using System.Collections.Generic;
 
 namespace Locadora.Services
 {
@@ -14,5 +16,8 @@ namespace Locadora.Services
         TClient FindByEmail(String email);
         TClient FindByUsername(String username);
         TClient Authenticate(Login login);
+        ICriteria SearchCriteria(ClientSearch search);
+        List<TReservation> Search(ClientSearch search);
+        Int32 CountSearch(ClientSearch search);
     }
 }

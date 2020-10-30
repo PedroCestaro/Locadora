@@ -1,0 +1,70 @@
+﻿<!doctype html>
+<html class="no-js" lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>@(ViewBag.Title ?? "Locadora")</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width">
+    @H.Stylesheet("Bootstrap/bootstrap.min.css")
+    @*@H.Stylesheet("Flix/css/bootstrap-reboot.min.css")*@
+    <style>
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    @H.Script("Flix/js/bootstrap.bundle.min.js")
+    @H.Stylesheet("bootstrap.min.css")
+    @H.Stylesheet("css/toastr.css")
+    @H.Script("jquery-1.7.2.min.js")
+    @H.Script("toastr.js")
+    @H.Script("modernizr-2.5.3-respond-1.1.0.min.js")
+    @RenderSection("header", required: false)
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    <div class="navbar navbar-expand-lg navbar-dark bg-default">
+            <div class="navbar-inner colornav">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </a><a class="brand" href="@Url.Action(MVC.Home.Index())">Locadora</a>
+                </div>
+            </div>
+        </div>
+    
+    <div class="header ">
+
+    </div>
+
+
+    <div class="container">
+
+        @RenderBody()
+    </div>
+    <hr>
+    <div id="modal"></div>
+    <footer style="display:flex">
+        <p style="margin:auto">
+            &copy; Company 2012
+        </p>
+    </footer>
+    @Html.Partial("_alert")
+    @H.Script("bootstrap.min.js")
+    @H.Script("jquery.livequery.min.js")
+    @H.Script("master.js")
+    @H.Script("jquery.validate.min.js")
+    @H.Script("messages_pt_br.js")
+    <script type="text/javascript">
+        var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+        (function (d, t) {
+            var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g, s)
+        }(document, 'script'));
+    </script>
+</body>
+</html>
