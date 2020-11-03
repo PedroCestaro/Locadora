@@ -1,0 +1,13 @@
+﻿@{ 
+    var filmes = TMovie.ListAll();
+}
+
+@foreach (var item in filmes)
+{
+    <div class="row">
+        <span><b>@item.Name</b></span>
+        <span>@foreach(var reserva in TIten.List(x => x.Movie.Id == item.Id).Select(x=>x.Quantity)){
+            <b>@reserva</b>   
+        }</span>
+    </div>
+}

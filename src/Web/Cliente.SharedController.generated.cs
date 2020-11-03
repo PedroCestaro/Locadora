@@ -38,11 +38,11 @@ namespace T4MVC.Cliente
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string _header_layout = "_header_layout";
+                public readonly string _header_cliente = "_header_cliente";
                 public readonly string _Layout = "_Layout";
                 public readonly string OldLayout = "OldLayout";
             }
-            public readonly string _header_layout = "~/Areas/Cliente/Views/Shared/_header_layout.cshtml";
+            public readonly string _header_cliente = "~/Areas/Cliente/Views/Shared/_header_cliente.cshtml";
             public readonly string _Layout = "~/Areas/Cliente/Views/Shared/_Layout.cshtml";
             public readonly string OldLayout = "~/Areas/Cliente/Views/Shared/OldLayout.cshtml";
         }

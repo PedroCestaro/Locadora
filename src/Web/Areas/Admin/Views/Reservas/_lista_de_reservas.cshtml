@@ -4,42 +4,44 @@
 {
     foreach (var item in Model)
     {
-        <div style="
-        border: 1px solid black;
-        padding: 2rem;
-        border-radius: 2rem;">
-            <p><strong>Id da Reserva: </strong>@item.Id</p>
-            <p><strong>Nome do Cliente: </strong>@item.Client.Name</p>
-            <p><strong>Filme(s):</strong></p>
-            <div>
-                @foreach (var movie in TIten.List(x => x.Reservation.Id == item.Id))
-                {
-                    <p>- @movie.Movie.Name</p>
-                    <p>Quantidade: @movie.Quantity</p>
-                }
+        <div class="card p-2 rounded ">
+            <div class="card-body">
+                <p class="card-title"><strong>Id da Reserva: </strong>@item.Id</p>
+                <p><strong>Nome do Cliente: </strong>@item.Client.Name</p>
+                <p><strong>Filme(s):</strong></p>
+                <div>
+                    @foreach (var movie in TIten.List(x => x.Reservation.Id == item.Id))
+                    {
+                        <p>- @movie.Movie.Name</p>
+                        <p>Quantidade: @movie.Quantity</p>
+                    }
+                </div>
+                <p><strong>Retirada: </strong>@item.Withdraw</p>
+                <p><strong>Devolução: </strong>@item.Devolution</p>
+                <p><strong>Valor: R$</strong>@item.TItens.Sum(x => x.Value).PriceFormatWithDot() </p>
+                <p>
+                    <strong>Status: </strong>
+                    @if (@item.Returned)
+                    {
+                        <span>Devolvida</span>
+                    }
+                    else
+                    {
+                        <span>Ativa</span>
+                    }
+                </p>
+                <div class="container row">
+                    <a class="btn btn-primary ajax-modal btn-xs" data-toggle="tooltip" title="Excluir"
+                       href="@Url.Action(MVC.Admin.Reservas.AlterarDataDevolucao(item.Id))">
+                        <i class="fas fa-save"></i> Confirmar
+                    </a>
+                    <a class="btn btn-danger ajax-modal btn-xs" data-toggle="tooltip" title="Excluir"
+                       href="@Url.Action(MVC.Admin.Reservas.FinalizarReservas(item.Id))">
+                        <i class="fas fa-trash"></i> Finalizar
+                    </a>
+                </div>
+              
             </div>
-            <p><strong>Retirada: </strong>@item.Withdraw</p>
-            <p><strong>Devolução: </strong>@item.Devolution</p>
-            <p><strong>Valor: R$</strong>@item.TItens.Sum(x => x.Value).PriceFormatWithDot() </p>
-            <p>
-                <strong>Status: </strong>
-                @if (@item.Returned)
-                {
-                    <span>Devolvida</span>
-                }
-                else
-                {
-                    <span>Ativa</span>
-                }
-            </p>
-            <a class="btn btn-danger ajax-modal btn-xs" data-toggle="tooltip" title="Excluir"
-               href="@Url.Action(MVC.Admin.Reservas.AlterarDataDevolucao(item.Id))">
-                <i class="fas fa-trash"></i> Confirmar
-            </a>
-            <a class="btn btn-danger ajax-modal btn-xs" data-toggle="tooltip" title="Excluir"
-               href="@Url.Action(MVC.Admin.Reservas.FinalizarReservas(item.Id))">
-                <i class="fas fa-trash"></i> Finalizar
-            </a>
         </div>
         <br />
     }

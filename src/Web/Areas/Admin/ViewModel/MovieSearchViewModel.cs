@@ -9,6 +9,7 @@ namespace Locadora.Web.Areas.Admin.ViewModel
     public class MovieSearchViewModel
     {
         public int? pagina { get; set; }
+
         public int quantidade { get; set; }
 
         public string nome { get; set; }

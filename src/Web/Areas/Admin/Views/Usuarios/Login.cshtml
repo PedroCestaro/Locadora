@@ -3,31 +3,42 @@
     ViewBag.Title = "LoginUsuario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="sign section--bg" data-bg="img/section/section.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="sign__content">
 
-<h2>Login Usuario</h2>
-<div class="container">
-        @using (Html.BeginForm())
-        {
-            <div class="col-lg-12">
-                @this.Label(x => x.User).Class("control-label").Value("Login:")
-                @this.TextBox(x => x.User).Class("required form-control").Autofocus(true).Required(true)
-                @Html.ValidationMessageFor(x => x.User)
+                    @using (Html.BeginForm())
+                    {
+                        <h1 class="title text-center" style="color:ghostwhite">Login Usuário</h1>
+                        <!-- authorization form -->
+                        @*<form action="#" class="sign__form">*@
+
+                        <div class="sign__group">
+                            @this.TextBox(x => x.User).Class("required form-control sign__group").Autofocus(true).Required(true)
+                            @Html.ValidationMessageFor(x => x.User)
+                        </div>
+
+                        <div class="sign__group">
+                            @this.Password(x => x.Password).Class("required form-control").Autofocus(true)
+                            @Html.ValidationMessageFor(x => x.Password)
+                        </div>
+
+                        <div class="sign__group sign__group--checkbox">
+                            <input id="remember" name="remember" type="checkbox" checked="checked">
+                            <label for="remember">Remember Me</label>
+                        </div>
+
+                        <button class="sign__btn" type="submit">Login</button>
+
+                        <button class="sign__btn" type="submit" onclick="location.href='@Url.Action(MVC.Admin.Usuarios.Cadastrar())'">Cadastrar</button>
+
+                
+
+                    }
+                </div>
             </div>
-            <div class="col-lg-12">
-                @this.Label(x => x.Password).Class("control-label").Value("Senha:")
-                @this.Password(x => x.Password).Class("required form-control").Autofocus(true).Required(true)
-                @Html.ValidationMessageFor(x => x.Password)
-            </div>
-            <div class="col-md-12 text-center" style="margin-top: 15px;">
-                <button type="button" class="btn btn-info btn-lg" onclick="location.href='@Url.Action(MVC.Admin.Usuarios.Cadastrar())'">
-                    <i class="fas fa-times"></i> Cadastre-se
-                </button>
-                <button type="submit" class="btn btn-primary btn-lg"
-                        id="submitButton">
-                    <i class="fas fa-check"></i> Entrar
-                </button>
-            </div>
-        }
-   
+        </div>
+    </div>
 </div>
-

@@ -15,23 +15,19 @@
     </div>
 </div>
 <div class="row filtros"
-     style="display: flex;
-            flex-flow:row;
-            justify-content: space-between;
-        "
      >
     <div class="form-group">
         @this.Label("Nome do Filme").Class("nome-filme").Value("Nome:")
-        <input type="text" class="nome-filme" />
-        <button class="busca">Buscar</button>
+        <input type="text" class="nome-filme form-control" />
+        <button class="btn btn-primary  busca">Buscar</button>
     </div>
     <div class="form-group">
         @this.Label("Categorias").Class("Categorias").Value("Categorias:")
-        @this.AutoSelect("Categorias").Class("Categorias").FirstOption("", "Selecione uma opção")
+        @this.AutoSelect("Categorias").Class("Categorias form-control").FirstOption("", "Selecione uma opção")
     </div>
     <div>
         <label>Status do filme</label>
-        <select class="status">
+        <select class="status custom-select">
             <option value="null">Selecione uma opção</option>
             <option value="true">Ativo</option>
             <option value="false">Inativo</option>
@@ -178,7 +174,7 @@
             var categoriaId = $("select.Categorias").val();
             var situacao = $("select.status").val();
             $('div.lista-filme').html("<img src='@Links.Content.images._45_gif' alt='loading' style='margin: 15px auto;'/>");
-             $.post("@Url.Action(MVC.Admin.Filmes.ListarFilmes())", { nome: nome, categorias: categoriaId, ativo: situacao }, function (data) {//variavel do backend, variavel que eu passo pelo front
+             $.p    ost("@Url.Action(MVC.Admin.Filmes.ListarFilmes())", { nome: nome, categorias: categoriaId, ativo: situacao }, function (data) {//variavel do backend, variavel que eu passo pelo front
                  $("div.lista-filme").html(data);
           });
          });

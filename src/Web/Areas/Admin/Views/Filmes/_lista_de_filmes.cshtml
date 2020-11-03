@@ -4,33 +4,30 @@
 {
     foreach (var item in Model)
     {
-        <div style="
-        border: 1px solid blue;
-        padding:2rem;
-        display:flex;
-        border-radius:2rem;
-        flex-direction:column;
-    ">
-            <p><strong>@item.Name</strong></p>
-            <div>
-                @foreach (var genero in item.TMovieCategories)
-                {
-                    <span style="display:flex;">- @genero.Category.Name</span>
-                }
-            </div>
-            <div>
-                <a class="btn btn-primary btn-xs" data-toggle="tooltip" title="Editar"
-                   href="@Url.Action(MVC.Admin.Filmes.Editar(item.Id))">
-                    <i class="fas fa-pencil"></i> Editar
-                </a>
-                <a class="btn btn-danger ajax-modal btn-xs" data-toggle="tooltip" title="Excluir"
-                   href="@Url.Action(MVC.Admin.Filmes.Excluir(item.Id))">
-                    <i class="fas fa-trash"></i> Excluir
-                </a>
-            </div>
-       
+        <div class="card p-1 rounded-bottom">
+            <div class="card-body ">
+                <p class="card-title"><strong>@item.Name</strong></p>
+                <div>
+                    @foreach (var genero in item.TMovieCategories)
+                    {
+                        <span style="display:flex;">- @genero.Category.Name</span>
+                    }
+                </div>
+                <div>
+                    <a class="btn btn-primary btn-xs" data-toggle="tooltip" title="Editar"
+                       href="@Url.Action(MVC.Admin.Filmes.Editar(item.Id))">
+                        <i class="fas fa-pencil"></i> Editar
+                    </a>
+                    <a class="btn btn-danger ajax-modal btn-xs" data-toggle="tooltip" title="Excluir"
+                       href="@Url.Action(MVC.Admin.Filmes.Excluir(item.Id))">
+                        <i class="fas fa-trash"></i> Excluir
+                    </a>
+                </div>
 
-        </div>
+
+            </div>
+            </div>
+           
     }
 }
 else

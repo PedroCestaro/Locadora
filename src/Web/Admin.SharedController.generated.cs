@@ -38,8 +38,12 @@ namespace T4MVC.Admin
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _filmes = "_filmes";
+                public readonly string _Layout___Copy = "_Layout - Copy";
                 public readonly string _Layout = "_Layout";
             }
+            public readonly string _filmes = "~/Areas/Admin/Views/Shared/_filmes.cshtml";
+            public readonly string _Layout___Copy = "~/Areas/Admin/Views/Shared/_Layout - Copy.cshtml";
             public readonly string _Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
         }
     }

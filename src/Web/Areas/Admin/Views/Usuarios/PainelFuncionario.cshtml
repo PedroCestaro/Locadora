@@ -1,42 +1,122 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "PainelFuncionario";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<div>
-    <h2>Painel do Funcionario</h2>
+<div class="row justify-content-center">
+    <div class="col-lg-4 col-sm-6 col-xs-12">
+        <div class="white-box analytics-info">
+            <h3 class="box-title">Total Reservas</h3>
+            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                <li>
+                    <div id="sparklinedash">
+                        <canvas width="67" height="30"
+                                style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                    </div>
+                </li>
+                <li class="ml-auto"><span class="counter text-success">@TReservation.Count()</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-4 col-sm-6 col-xs-12">
+        <div class="white-box analytics-info">
+            <h3 class="box-title">Total Clientes</h3>
+            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                <li>
+                    <div id="sparklinedash2">
+                        <canvas width="67" height="30"
+                                style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                    </div>
+                </li>
+                <li class="ml-auto"><span class="counter text-purple">@TClient.Count()</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-4 col-sm-6 col-xs-12">
+        <div class="white-box analytics-info">
+            <h3 class="box-title">Total Filmes</h3>
+            <ul class="list-inline two-part d-flex align-items-center mb-0">
+                <li>
+                    <div id="sparklinedash3">
+                        <canvas width="67" height="30"
+                                style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                    </div>
+                </li>
+                <li class="ml-auto">
+                    <span class="counter text-info">@TMovie.Count()</span>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
-<div style="
-        border-bottom: 1px solid purple;
-        border-radius: 1.5rem;
-        display:flex;
-        padding:2rem;
-        ">
-    <button style="background:purple; border-radius:1rem; padding:1rem; color:whitesmoke;" onclick="location.href='@Url.Action(MVC.Admin.Reservas.NovaReserva())'">Nova Reserva</button>
-    <button style="
-        background: purple;
-        border-radius: 1rem;
-        padding: 1rem;
-        color: whitesmoke;
-" onclick="location.href='@Url.Action(MVC.Admin.Reservas.Index())'">
-       Visualizar todas as reservas
-    </button>
-    <button style="
-        background: purple;
-        border-radius: 1rem;
-        padding: 1rem;
-        color: whitesmoke;
-" onclick="location.href='@Url.Action(MVC.Admin.Filmes.Index())'">
-        Area de filmes
-    </button>
-    <button style="
-        background: purple;
-        border-radius: 1rem;
-        padding: 1rem;
-        color: whitesmoke;
-" onclick="location.href='@Url.Action(MVC.Admin.Generos.Index())'">
-        Area de Generos
-    </button>
+<!-- ============================================================== -->
+<!-- PRODUCTS YEARLY SALES -->
+<!-- ============================================================== -->
+@*<div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="white-box">
+                <h3 class="box-title">Reservas por filmes</h3>
+                <div class="d-md-flex">
+                    <ul class="list-inline d-flex ml-auto">
+                        <li class="pl-3">
+                            <h5><i class="fa fa-circle m-r-5 text-info"></i>Mac</h5>
+                        </li>
+                        <li class="pl-3">
+                            <h5><i class="fa fa-circle m-r-5 text-inverse"></i>Windows</h5>
+                        </li>
+                    </ul>
+                </div>
+                <div id="ct-visits" style="height: 405px;">
+                    <div class="chartist-tooltip" style="top: -17px; left: -12px;">
+                        <span class="chartist-tooltip-value">@TMovie.Count()</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+<!-- ============================================================== -->
+<!-- RECENT SALES -->
+<!-- ============================================================== -->
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-8 col-sm-8">
+        <div class="white-box">
+            <div class="d-md-flex mb-3 flex-column p-2">
+                <h3 class="box-title mb-0">Reservas</h3>
+                <div class="row p-2 justify-content-around">
+                    <button class="btn btn-cyan p-3 col-4"
+                            onclick="location.href='@Url.Action(MVC.Admin.Reservas.NovaReserva())'">
+                        Criar nova
+                    </button>
+                    <button class="btn btn-secondary p-3 col-4"
+                            onclick="location.href='@Url.Action(MVC.Admin.Reservas.Index())'">
+                       Visualizar todas
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- ============================================================== -->
+<!-- Recent Comments -->
+<!-- ============================================================== -->
+<div class="row justify-content-center">
+    <!-- .col -->
+    <div class="col-md-8 col-lg-8 col-sm-8">
+        <div class="white-box flex-column">
+            <h3 class="box-title mb-0">Filmes</h3>
+            <div class="row justify-content-around">
+                <button class="btn btn-cyan p-3 col-4"
+                        onclick="location.href='@Url.Action(MVC.Admin.Filmes.Cadastrar())'">
+                    Adicionar Novo
+                </button>
+                <button class="btn btn-secondary p-3 col-4"
+                        onclick="location.href='@Url.Action(MVC.Admin.Filmes.Index())'">
+                    Listar Todos
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
 
 
+</script>
